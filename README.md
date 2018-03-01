@@ -7,7 +7,7 @@ SYSC 4806 Project - Red Squadron Team
 
 
 ## Summary
-TO BE ADDED
+A user can track, edit, and update learning outcomes for different programs. Each course has a set of learning objectives in a given year. Each learning objective belongs to a category, and these categories can be edited by the administrator. A course belongs to one or more programs and a program has many courses in a given year.
 
 ## Application Endpoints
 Base URL: [https://sysc4806-red-squadron-project.herokuapp.com](https://sysc4806-red-squadron-project.herokuapp.com)
