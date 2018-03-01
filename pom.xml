@@ -35,7 +35,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>addressBook.Application</mainClass>
+                            <mainClass>learningOutcomes.Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
