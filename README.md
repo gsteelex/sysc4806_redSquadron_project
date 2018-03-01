@@ -44,3 +44,4 @@ To be completed this iteration:
 * Create model objects for shared use and modification
 * Create Endpoints under "/programs" with unit and integration tests
 * Create Endpoints under "/categories" with unit and integration tests
+* Create UI page to list all programs with link to view a specific program (display some data, TA approved)
