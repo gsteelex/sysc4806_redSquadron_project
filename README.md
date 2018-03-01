@@ -35,12 +35,15 @@ Base URL: [https://sysc4806-red-squadron-project.herokuapp.com](https://sysc4806
 |UPDATE	|	/categories/id/learningOutcomes/id	|
 |DELETE	|	/categories/idlearningOutcomes/id	|
 
+## Documentation
+UML class diagram runs in [draw.io](https://www.draw.io/)
+
 ## Product Backlog for this Iteration
 The project has been newly created with a healthcheck endpoint operational, unit tests, integration tests, and a continuous integration deployment pipeline. 
 
 To be completed this iteration:
 * Define endpoints as a team :heavy_check_mark:
-* Commit initial UML diagram
+* Commit initial UML diagram :pencil2:
 * Create model objects for shared use and modification
 * Create Endpoints under "/programs" with unit and integration tests
 * Create Endpoints under "/categories" with unit and integration tests
