@@ -1,4 +1,4 @@
-package learningOutcomes;
+package learningOutcomes.controllers;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -20,7 +21,6 @@ public class HealthCheckControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
 
     @Test
     public void testHealthCheckPath() throws Exception {
@@ -30,6 +30,5 @@ public class HealthCheckControllerTest {
                 .andExpect(jsonPath("$.healthy").isBoolean())
                 .andExpect(jsonPath("$.healthy").value(true));
     }
-
 
 }
