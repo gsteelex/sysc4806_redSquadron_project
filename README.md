@@ -17,23 +17,23 @@ Base URL: [https://sysc4806-red-squadron-project.herokuapp.com](https://sysc4806
 |GET	| /programs |
 |POST	|	/programs	|
 |GET	|	/programs/id	|
-|UPDATE	|	/programs/id	|
+|PATCH	|	/programs/id	|
 |DELETE	|	/programs/id	|
-|POST	|	/programs/id/courses |
-|GET	| 	/programs/id/courses	|
-|POST	|	/programs/id/courses	|
-|UPDATE	|	/programs/id/courses/id	|
-|DELETE	|	/programs/id/courses/id	|
+|POST	|	/courses |
+|GET	| 	/courses	|
+|GET	| 	/courses/id	|
+|PATCH	|	/courses/id	|
+|DELETE	|	/courses/id	|
 |GET	|	/categories	|
 |POST	|	/categories	|
 |GET	|	/categories/id	|
-|UPDATE	|	/categories/id	|
+|PATCH	|	/categories/id	|
 |DELETE	|	/categories/id	|
 |GET	|	/categories/id/learningOutcomes	|
 |POST	|	/categories/id/learningOutcome	|
 |GET	|	/categories/id/learningOutcomes/id	|
-|UPDATE	|	/categories/id/learningOutcomes/id	|
-|DELETE	|	/categories/idlearningOutcomes/id	|
+|PATCH	|	/categories/id/learningOutcomes/id	|
+|DELETE	|	/categories/id/learningOutcomes/id	|
 
 ## Documentation
 UML class diagram runs in [draw.io](https://www.draw.io/)
@@ -45,6 +45,7 @@ To be completed this iteration:
 * Define endpoints as a team :heavy_check_mark:
 * Commit initial UML diagram :pencil2:
 * Create model objects for shared use and modification
-* Create Endpoints under "/programs" with unit and integration tests
+* Create Endpoints under "/programs" with unit and integration tests :heavy_check_mark:
+* Create Endpoints under "/courses" with unit and integration tests
 * Create Endpoints under "/categories" with unit and integration tests
 * Create UI page to list all programs with link to view a specific program (display some data, TA approved)
