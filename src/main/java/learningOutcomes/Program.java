@@ -1,11 +1,8 @@
 package learningOutcomes;
-import java.util.List;
+
+import javax.persistence.*;
 import java.util.ArrayList;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.CascadeType;
+import java.util.List;
 
 @Entity
 public class Program {
@@ -18,7 +15,7 @@ public class Program {
 
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<Course> courses;
 	
 	public Program() {
@@ -29,7 +26,7 @@ public class Program {
         this(name, new ArrayList<Course>());
     }
 	
-	public Program(String name, ArrayList<Course> courses) {
+	public Program(String name, List<Course> courses) {
         this.name = name;
         this.courses = courses;
     }
@@ -84,4 +81,7 @@ public class Program {
         return true;
     }
 
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 }
