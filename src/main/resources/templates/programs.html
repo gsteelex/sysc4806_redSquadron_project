@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Programs View</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+<h1>Programs</h1>
+<div th:each="program: ${programs}" >
+    <p th:text="${program.name}" />
+</div>
+</body>
+</html>
