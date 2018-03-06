@@ -41,7 +41,7 @@ public class Course {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 	public int getYear() { return year; }
-    public void setName(int year) { this.year = year; }
+    public void setYear(int year) { this.year = year; }
 
     public LearningOutcome getLearningOutcome(int index) {
         return outcomes.get(index);
@@ -58,14 +58,6 @@ public class Course {
     }
 
     public void removeLearningOutcomeIndex(int index) { outcomes.remove(index); }
-
-    public void printCourse() {
-        System.out.println("Course " + name + " in year " + year + " contains " + outcomes.size() + " outcomes(s).");
-        for (int i = 0; i < outcomes.size(); i++) {
-            LearningOutcome c = outcomes.get(i);
-            System.out.println(c.toString());
-        }
-    }
 
     @Override
     public String toString() {
