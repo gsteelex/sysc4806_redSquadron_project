@@ -12,7 +12,7 @@ A user can track, edit, and update learning outcomes for different programs. Eac
 ## Application Endpoints
 Base URL: [https://sysc4806-red-squadron-project.herokuapp.com](https://sysc4806-red-squadron-project.herokuapp.com)
 
-|Request Method|Endpoint|Created|
+|Request Method|Endpoint|
 |-------------|-------------|
 |GET	| /programs |
 |POST	|	/programs	|
