@@ -59,14 +59,6 @@ public class Course {
 
     public void removeLearningOutcomeIndex(int index) { outcomes.remove(index); }
 
-    public void printCourse() {
-        System.out.println("Course " + name + " in year " + year + " contains " + outcomes.size() + " outcomes(s).");
-        for (int i = 0; i < outcomes.size(); i++) {
-            LearningOutcome c = outcomes.get(i);
-            System.out.println(c.toString());
-        }
-    }
-
     @Override
     public String toString() {
         return String.format(
