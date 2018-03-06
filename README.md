@@ -14,12 +14,12 @@ Base URL: [https://sysc4806-red-squadron-project.herokuapp.com](https://sysc4806
 
 |Request Method|Endpoint|
 |-------------|-------------|
-|GET	| /programs |
-|POST	|	/programs	|
-|GET	|	/programs/id	|
-|PATCH	|	/programs/id	|
-|DELETE	|	/programs/id	|
-|POST	|	/courses |
+|GET	| /programs | :heavy_check_mark:
+|POST	|	/programs	| :heavy_check_mark:
+|GET	|	/programs/id	| :heavy_check_mark:
+|PATCH	|	/programs/id	| :heavy_check_mark:
+|DELETE	|	/programs/id	| :heavy_check_mark:
+|POST	|	/courses | 
 |GET	| 	/courses	|
 |GET	| 	/courses/id	|
 |PATCH	|	/courses/id	|
@@ -41,11 +41,17 @@ UML class diagram runs in [draw.io](https://www.draw.io/)
 ## Product Backlog for this Iteration
 The project has been newly created with a healthcheck endpoint operational, unit tests, integration tests, and a continuous integration deployment pipeline. 
 
-To be completed this iteration:
+To be completed this iteration (03/08/2018):
 * Define endpoints as a team :heavy_check_mark:
 * Commit initial UML diagram :pencil2:
 * Create model objects for shared use and modification
 * Create Endpoints under "/programs" with unit and integration tests :heavy_check_mark:
-* Create Endpoints under "/courses" with unit and integration tests
+* Create Endpoints under "/courses" with unit and integration tests (create course)
 * Create Endpoints under "/categories" with unit and integration tests
 * Create UI page to list all programs with link to view a specific program (display some data, TA approved)
+
+To be completed for next iteration (03/15/2018):
+* Create endpoints for courses
+* Create endpoints for learning outcomes
+* Create courses and programs through GUI
+* View courses, programs, categories, and learning outcomes on GUI
