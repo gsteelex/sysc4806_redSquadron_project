@@ -17,10 +17,10 @@ public class CourseTest {
 
 	@Test
     public void setValuesTest() throws Exception {
-		course.setId(1);
+		course.setId(1L);
 		course.setYear(3);
 		course.setName("TestName");
-		Assert.assertEquals(1, course.getId());
+		Assert.assertEquals(1L, course.getId());
 		Assert.assertEquals(3, course.getYear());
 		Assert.assertEquals("TestName", course.getName());
 	}

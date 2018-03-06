@@ -17,10 +17,10 @@ public class LearningOutcomeTest {
 
 	@Test
     public void setValuesTest() throws Exception {
-		lo.setId(1);
+		lo.setId(1L);
 		lo.setName("TestName");
 		lo.setCategory(cat);
-		Assert.assertEquals(1, lo.getId());
+		Assert.assertEquals(1L, lo.getId());
 		Assert.assertEquals("TestName", lo.getName());
 		Assert.assertEquals("TestCategory", lo.getCategory().getName());
 	}
