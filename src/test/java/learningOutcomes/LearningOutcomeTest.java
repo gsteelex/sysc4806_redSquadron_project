@@ -20,7 +20,7 @@ public class LearningOutcomeTest {
 		lo.setId(1);
 		lo.setName("TestName");
 		lo.setCategory(cat);
-		//Assert.assertEquals(1, lo.getId());
+		Assert.assertEquals((Integer) 1, lo.getId());
 		Assert.assertEquals("TestName", lo.getName());
 		Assert.assertEquals("TestCategory", lo.getCategory().getName());
 	}

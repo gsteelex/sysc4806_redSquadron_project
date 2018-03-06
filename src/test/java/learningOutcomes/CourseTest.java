@@ -20,7 +20,7 @@ public class CourseTest {
 		course.setId(1);
 		course.setYear(3);
 		course.setName("TestName");
-		//Assert.assertEquals(1, course.getId());
+		Assert.assertEquals((Integer) 1, course.getId());
 		Assert.assertEquals(3, course.getYear());
 		Assert.assertEquals("TestName", course.getName());
 	}

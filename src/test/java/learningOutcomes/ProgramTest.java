@@ -19,7 +19,7 @@ public class ProgramTest {
     public void setValuesTest() throws Exception {
 		program.setId(1);
 		program.setName("TestName");
-		//Assert.assertEquals(1, program.getId());
+		Assert.assertEquals((Integer) 1, program.getId());
 		Assert.assertEquals("TestName", program.getName());
 	}
 	

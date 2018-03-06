@@ -19,7 +19,7 @@ public class CategoryTest {
     public void setValuesTest() throws Exception {
 		cat.setId(1);
 		cat.setName("TestName");
-		//Assert.assertEquals(1, cat.getId());
+		Assert.assertEquals((Integer) 1, cat.getId());
 		Assert.assertEquals("TestName", cat.getName());
 	}
 	
