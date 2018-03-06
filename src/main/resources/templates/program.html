@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Programs View</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+<h1 th:text="${program.name}" />
+<p th:text="'id: ' + ${program.id}" />
+
+<h2>Courses in Program:</h2>
+<div th:each="course: ${program.courses}" >
+    <p th:text="${course.name}" />
+</div>
+
+</body>
+</html>
