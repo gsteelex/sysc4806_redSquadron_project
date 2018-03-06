@@ -41,7 +41,7 @@ public class Course {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 	public int getYear() { return year; }
-    public void setName(int year) { this.year = year; }
+    public void setYear(int year) { this.year = year; }
 
     public LearningOutcome getLearningOutcome(int index) {
         return outcomes.get(index);
