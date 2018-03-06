@@ -54,14 +54,6 @@ public class Program {
 
     public void removeCourseIndex(int index) { courses.remove(index); }
 
-    public void printProgram() {
-        System.out.println("Program " + name + " contains " + courses.size() + " courses(s).");
-        for (int i = 0; i < courses.size(); i++) {
-            Course c = courses.get(i);
-            System.out.println(c.toString());
-        }
-    }
-
     @Override
     public String toString() {
         return String.format(
