@@ -14,12 +14,12 @@ Base URL: [https://sysc4806-red-squadron-project.herokuapp.com](https://sysc4806
 
 |Request Method|Endpoint|
 |-------------|-------------|
-|GET	| /programs | :heavy_check_mark:
-|POST	|	/programs	| :heavy_check_mark:
-|GET	|	/programs/id	| :heavy_check_mark:
-|PATCH	|	/programs/id	| :heavy_check_mark:
-|DELETE	|	/programs/id	| :heavy_check_mark:
-|POST	|	/courses | 
+|GET	| /programs |
+|POST	|	/programs	|
+|GET	|	/programs/id	|
+|PATCH	|	/programs/id	|
+|DELETE	|	/programs/id	|
+|POST	|	/courses |
 |GET	| 	/courses	|
 |GET	| 	/courses/id	|
 |PATCH	|	/courses/id	|
@@ -46,7 +46,7 @@ To be completed this iteration (03/08/2018):
 * Commit initial UML diagram :pencil2:
 * Create model objects for shared use and modification
 * Create Endpoints under "/programs" with unit and integration tests :heavy_check_mark:
-* Create Endpoints under "/courses" with unit and integration tests (create course)
+* Create Endpoints under "/courses" with unit and integration tests (create course & get courses) :heavy_check_mark:
 * Create Endpoints under "/categories" with unit and integration tests
 * Create UI page to list all programs with link to view a specific program (display some data, TA approved)
 
