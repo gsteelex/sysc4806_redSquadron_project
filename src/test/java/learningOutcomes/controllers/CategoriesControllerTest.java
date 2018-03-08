@@ -2,8 +2,10 @@ package learningOutcomes.controllers;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import learningOutcomes.Category;
 import learningOutcomes.LearningOutcome;
 import learningOutcomes.aspects.CategoryPathAspect;
+import learningOutcomes.repositories.CategoryRepository;
 import learningOutcomes.repositories.LearningOutcomeRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -127,7 +129,6 @@ public class CategoriesControllerTest {
 
     @Test
     public void testGetAllCategories() throws Exception {
-
         mockMvc.perform(
                 post(CATEGORY_BASE_PATH)
                         .contentType("application/json")
@@ -141,10 +142,10 @@ public class CategoriesControllerTest {
                 .andDo(print())
                 .andExpect(jsonPath("$").isArray())
                 .andExpect(jsonPath("$").isNotEmpty())
-                .andExpect(jsonPath("$[1].id").exists())
-                .andExpect(jsonPath("$[1].id").isNumber())
-                .andExpect(jsonPath("$[1].name").exists())
-                .andExpect(jsonPath("$[1].name").value(NAME));
+                .andExpect(jsonPath("$[0].id").exists())
+                .andExpect(jsonPath("$[0].id").isNumber())
+                .andExpect(jsonPath("$[0].name").exists())
+                .andExpect(jsonPath("$[0].name").value(NAME));
     }
 
     @Test
