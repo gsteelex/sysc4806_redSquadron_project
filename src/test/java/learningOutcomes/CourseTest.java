@@ -34,11 +34,31 @@ public class CourseTest {
     }
 
     @Test
-    public void removeLearningOutcomeTest() throws Exception {
+    public void removeLearningOutcomeByIndexTest() throws Exception {
         course.addLearningOutcome(lo);
         Assert.assertEquals(1, course.getSize());
         course.removeLearningOutcomeIndex(0);
         Assert.assertEquals(0, course.getSize());
+    }
+
+    @Test
+    public void removeLearningOutcomeByReferenceTest() throws Exception {
+        course.addLearningOutcome(lo);
+        Assert.assertEquals(1, course.getSize());
+        course.removeLearningOutcome(lo);
+        Assert.assertEquals(0, course.getSize());
+    }
+
+    @Test
+    public void courseEqualsTest() throws Exception {
+        course.setId(1);
+        course.setYear(3);
+        course.setName("TestName");
+        Course course2 = new Course("TestName", 3);
+        course2.setId(1);
+        course.addLearningOutcome(lo);
+        course2.addLearningOutcome(lo);
+        Assert.assertTrue(course.equals(course2));
     }
 
 }

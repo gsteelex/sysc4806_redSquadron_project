@@ -32,11 +32,30 @@ public class CategoryTest {
     }
 
     @Test
-    public void removeLearningOutcomeTest() throws Exception {
+    public void removeLearningOutcomeByIndexTest() throws Exception {
         cat.addLearningOutcome(lo);
         Assert.assertEquals(1, cat.getSize());
         cat.removeLearningOutcomeIndex(0);
         Assert.assertEquals(0, cat.getSize());
+    }
+
+    @Test
+    public void removeLearningOutcomeByReferenceTest() throws Exception {
+        cat.addLearningOutcome(lo);
+        Assert.assertEquals(1, cat.getSize());
+        cat.removeLearningOutcome(lo);
+        Assert.assertEquals(0, cat.getSize());
+    }
+
+    @Test
+    public void categoryEqualsTest() throws Exception {
+        cat.setId(1);
+        cat.setName("TestName");
+        Category cat2 = new Category("TestName");
+        cat2.setId(1);
+        cat.addLearningOutcome(lo);
+        cat2.addLearningOutcome(lo);
+        Assert.assertTrue(cat.equals(cat2));
     }
 
 }
