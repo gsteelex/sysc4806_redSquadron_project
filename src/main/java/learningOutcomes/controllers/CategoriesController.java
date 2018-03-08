@@ -97,7 +97,7 @@ public class CategoriesController {
 
 
         if (categoryRequest.getLearningOutcomes() != null) {
-            ArrayList<LearningOutcome> outcomes = new ArrayList<>();
+            List<LearningOutcome> outcomes = new ArrayList<>();
 
             for (Integer learningOutcomeId: categoryRequest.getLearningOutcomes()) {
                 Optional<LearningOutcome> outcome = learningOutcomeRepository.findById(learningOutcomeId);

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
+@ControllerAdvice
+@Aspect
+@Configuration
 public class CategoryPathAspect {
 
     public CategoryRepository categoryRepository;
