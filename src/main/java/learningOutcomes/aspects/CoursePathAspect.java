@@ -2,7 +2,6 @@ package learningOutcomes.aspects;
 
 
 import learningOutcomes.Course;
-import learningOutcomes.Program;
 import learningOutcomes.controllers.requestModels.CourseRequest;
 import learningOutcomes.repositories.CourseRepository;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -38,7 +37,7 @@ public class CoursePathAspect {
      * @return the result of the request
      * @throws Throwable
      */
-    @Around("@annotation(CourseRequestValidated) && (args(response, courseRequest,..))")
+    @Around("@annotation(CourseRequestValidated) && (args(response, courseRequest,..) || args(*, response, courseRequest,..))")
     public Object validateCourseRequest(ProceedingJoinPoint pjp, CourseRequest courseRequest, HttpServletResponse response) throws Throwable {
         if (courseRequest.getName() == null) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "name must be supplied");
@@ -56,6 +55,14 @@ public class CoursePathAspect {
         }
     }
 
+    /**
+     * Advice method to validate a Course with the given ID exists.
+     * @param pjp proceeding join point used to continue request handling chain
+     * @param id the ID of the Course to validate
+     * @param response the response that can be used to send an error
+     * @return the result of the request
+     * @throws Throwable
+     */
     @Around("@annotation(CourseExistsValidated) && (args(id, response,..))")
     public Object validateCourseExists(ProceedingJoinPoint pjp, Integer id, HttpServletResponse response) throws Throwable {
         Optional<Course> course = courseRepository.findById(id);

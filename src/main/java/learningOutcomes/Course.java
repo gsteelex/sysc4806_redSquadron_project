@@ -1,7 +1,8 @@
 package learningOutcomes;
-import java.util.List;
-import java.util.ArrayList;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Course {
@@ -44,6 +45,9 @@ public class Course {
     }
     public List<LearningOutcome> getLearningOutcomes() { return outcomes; }
     public int getSize() { return outcomes.size(); }
+    public void setOutcomes(List<LearningOutcome> learningOutcomes) {
+	    this.outcomes = learningOutcomes;
+    }
 
     public void addLearningOutcome(LearningOutcome c) {
         outcomes.add(c);

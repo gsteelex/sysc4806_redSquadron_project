@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNull;
+
 public class CourseTest {
 
     Course course;
@@ -41,4 +43,9 @@ public class CourseTest {
         Assert.assertEquals(0, course.getSize());
     }
 
+    @Test
+    public void setOutcomesTest() {
+        course.setOutcomes(null);
+        assertNull(course.getLearningOutcomes());
+    }
 }

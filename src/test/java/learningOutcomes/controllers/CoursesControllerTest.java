@@ -17,9 +17,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -32,6 +30,8 @@ public class CoursesControllerTest {
     private static final String COURSES_BASE_PATH = "/courses";
     private static final String NAME = "name123";
     private static final Integer YEAR = 2018;
+    private static final String UPDATED_NAME = "updated name 456";
+    private static final Integer UPDATED_YEAR = 8102;
 
     @Autowired
     private LearningOutcomeRepository learningOutcomeRepository;
@@ -138,12 +138,9 @@ public class CoursesControllerTest {
                 .andExpect(jsonPath("$[0].id").exists())
                 .andExpect(jsonPath("$[0].id").isNumber())
                 .andExpect(jsonPath("$[0].name").exists())
-                .andExpect(jsonPath("$[0].name").value(NAME))
                 .andExpect(jsonPath("$[0].year").exists())
-                .andExpect(jsonPath("$[0].year").value(YEAR))
                 .andExpect(jsonPath("$[0].learningOutcomes").exists())
-                .andExpect(jsonPath("$[0].learningOutcomes").isArray())
-                .andExpect(jsonPath("$[0].learningOutcomes[0].id").exists());
+                .andExpect(jsonPath("$[0].learningOutcomes").isArray());
     }
 
     @Test
@@ -215,6 +212,111 @@ public class CoursesControllerTest {
                 .andExpect(jsonPath("$.name").value(NAME))
                 .andExpect(jsonPath("$.year").exists())
                 .andExpect(jsonPath("$.year").value(YEAR))
+                .andExpect(jsonPath("$.learningOutcomes").exists())
+                .andExpect(jsonPath("$.learningOutcomes").isArray())
+                .andExpect(jsonPath("$.learningOutcomes[0].id").exists())
+                .andExpect(jsonPath("$.learningOutcomes[0].id").value(learningOutcome.getId()));
+    }
+
+
+
+    @Test
+    public void testUpdateCourseById_NotFound() throws Exception {
+        mockMvc.perform(
+                patch(COURSES_BASE_PATH + "/" + 724729)
+                        .contentType("application/json")
+                        .content("{\"name\": \"" + NAME + "\", \"year\": \"" + YEAR + "\", \"learningOutcomes\":[" + learningOutcome.getId() + "]}")
+        )
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testUpdateCourseById_BadRequest() throws Exception {
+        String courseId = createCourse();
+
+        mockMvc.perform(
+                patch(COURSES_BASE_PATH + "/" + courseId)
+        )
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testUpdateProgramById_EmptyLearningOutcomes() throws Exception {
+        String courseId = createCourse();
+
+        mockMvc.perform(
+                patch(COURSES_BASE_PATH + "/" + courseId)
+                        .contentType("application/json")
+                        .content("{\"name\": \"" + UPDATED_NAME + "\", \"year\": \"" + UPDATED_YEAR + "\", \"learningOutcomes\":[]}")
+        )
+                .andDo(print())
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.id").isNumber())
+                .andExpect(jsonPath("$.name").exists())
+                .andExpect(jsonPath("$.name").value(UPDATED_NAME))
+                .andExpect(jsonPath("$.year").exists())
+                .andExpect(jsonPath("$.year").value(UPDATED_YEAR))
+                .andExpect(jsonPath("$.learningOutcomes").exists())
+                .andExpect(jsonPath("$.learningOutcomes").isArray())
+                .andExpect(jsonPath("$.learningOutcomes").isEmpty());
+    }
+
+    @Test
+    public void testUpdateProgramById_LearningOutcomeDoesNotExist() throws Exception {
+        String courseId = createCourse();
+
+        MvcResult result = mockMvc.perform(
+                patch(COURSES_BASE_PATH + "/" + courseId)
+                        .contentType("application/json")
+                        .content("{\"name\": \"" + UPDATED_NAME + "\", \"year\": \"" + UPDATED_YEAR + "\", \"learningOutcomes\":[74687]}")
+        )
+                .andDo(print())
+                .andExpect(status().isNotFound())
+                .andReturn();
+
+        assertEquals("could not find learningOutcome with id: 74687", result.getResponse().getErrorMessage());
+    }
+
+    @Test
+    public void testUpdateProgramById_LearningOutcomesUntouched() throws Exception {
+        String courseId = createCourse();
+
+        mockMvc.perform(
+                patch(COURSES_BASE_PATH + "/" + courseId)
+                        .contentType("application/json")
+                        .content("{\"name\": \"" + UPDATED_NAME + "\", \"year\": \"" + UPDATED_YEAR + "\"}")
+        )
+                .andDo(print())
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.id").isNumber())
+                .andExpect(jsonPath("$.name").exists())
+                .andExpect(jsonPath("$.name").value(UPDATED_NAME))
+                .andExpect(jsonPath("$.year").exists())
+                .andExpect(jsonPath("$.year").value(UPDATED_YEAR))
+                .andExpect(jsonPath("$.learningOutcomes").exists())
+                .andExpect(jsonPath("$.learningOutcomes").isArray())
+                .andExpect(jsonPath("$.learningOutcomes[0].id").exists())
+                .andExpect(jsonPath("$.learningOutcomes[0].id").value(learningOutcome.getId()));
+    }
+
+    @Test
+    public void testUpdateProgramById_LearningOutcomeExists() throws Exception {
+        String courseId = createCourse();
+
+        mockMvc.perform(
+                patch(COURSES_BASE_PATH + "/" + courseId)
+                        .contentType("application/json")
+                        .content("{\"name\": \"" + UPDATED_NAME + "\", \"year\": \"" + UPDATED_YEAR + "\", \"learningOutcomes\":[" + learningOutcome.getId() + "]}")
+        )
+                .andDo(print())
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.id").isNumber())
+                .andExpect(jsonPath("$.name").exists())
+                .andExpect(jsonPath("$.name").value(UPDATED_NAME))
+                .andExpect(jsonPath("$.year").exists())
+                .andExpect(jsonPath("$.year").value(UPDATED_YEAR))
                 .andExpect(jsonPath("$.learningOutcomes").exists())
                 .andExpect(jsonPath("$.learningOutcomes").isArray())
                 .andExpect(jsonPath("$.learningOutcomes[0].id").exists())
