@@ -1,11 +1,7 @@
 package learningOutcomes;
 import java.util.List;
 import java.util.ArrayList;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.CascadeType;
+import javax.persistence.*;
 
 @Entity
 public class Course {
@@ -20,7 +16,7 @@ public class Course {
 	
 	private int year;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<LearningOutcome> outcomes;
 	
 	public Course() {

@@ -3,15 +3,11 @@ package learningOutcomes.controllers;
 import learningOutcomes.Course;
 import learningOutcomes.LearningOutcome;
 import learningOutcomes.aspects.CourseRequestValidated;
-import learningOutcomes.aspects.ProgramNameValidated;
 import learningOutcomes.controllers.requestModels.CourseRequest;
 import learningOutcomes.repositories.CourseRepository;
 import learningOutcomes.repositories.LearningOutcomeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -84,5 +80,27 @@ public class CoursesController {
         courseRepository.save(course);
 
         return course;
+    }
+
+    /**
+     * Controller method to delete a Course by its ID, returns SC_NO_CONTENT when no Course existed
+     * @param id the ID of the Course to delete
+     * @param response used to send SC_NO_CONTENT
+     * @return the deleted Course or null if the course did not exist
+     */
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    public Course deleteCourseById(@PathVariable("id") Integer id, HttpServletResponse response) {
+        Optional<Course> course = courseRepository.findById(id);
+
+        if (course.isPresent()) {
+            Course courseToReturn = course.get();
+            courseRepository.delete(course.get());
+            return courseToReturn;
+
+        } else {
+            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            //null for empty response body
+            return null;
+        }
     }
 }
