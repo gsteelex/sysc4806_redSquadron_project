@@ -2,6 +2,7 @@ package learningOutcomes.controllers;
 
 import learningOutcomes.Course;
 import learningOutcomes.LearningOutcome;
+import learningOutcomes.aspects.CourseExistsValidated;
 import learningOutcomes.aspects.CourseRequestValidated;
 import learningOutcomes.controllers.requestModels.CourseRequest;
 import learningOutcomes.repositories.CourseRepository;
@@ -103,4 +104,12 @@ public class CoursesController {
             return null;
         }
     }
+
+    @CourseExistsValidated
+    @RequestMapping(value="/{id}", method = RequestMethod.GET)
+    public Course getCourseById(@PathVariable("id") Integer id, HttpServletResponse response) {
+        return courseRepository.findById(id).get();
+    }
+
+    //TODO: PATCH
 }

@@ -152,8 +152,6 @@ public class CoursesControllerTest {
 
         mockMvc.perform(
                 delete(COURSES_BASE_PATH + "/" + courseId)
-                        .contentType("application/json")
-                        .content("{\"name\": \"" + NAME + "\", \"year\": \"" + YEAR + "\", \"learningOutcomes\":[" + learningOutcome.getId() + "]}")
         )
                 .andDo(print())
                 .andExpect(jsonPath("$.id").exists())
@@ -173,8 +171,6 @@ public class CoursesControllerTest {
     public void testDeleteCourseById_CourseDoesNotExist() throws Exception {
         mockMvc.perform(
                 delete(COURSES_BASE_PATH + "/" + 4846)
-                        .contentType("application/json")
-                        .content("{\"name\": \"" + NAME + "\", \"year\": \"" + YEAR + "\", \"learningOutcomes\":[" + learningOutcome.getId() + "]}")
         )
                 .andDo(print())
                 .andExpect(status().isNoContent());
@@ -186,11 +182,42 @@ public class CoursesControllerTest {
 
         mockMvc.perform(
                 delete(COURSES_BASE_PATH + "/" + courseId)
-                        .contentType("application/json")
-                        .content("{\"name\": \"" + NAME + "\", \"year\": \"" + YEAR + "\", \"learningOutcomes\":[" + learningOutcome.getId() + "]}")
         )
                 .andDo(print());
 
         assertTrue(learningOutcomeRepository.findById(learningOutcome.getId()).isPresent());
+    }
+
+    @Test
+    public void testGetCourseById_CourseDoesNotExist() throws Exception {
+        mockMvc.perform(
+                get(COURSES_BASE_PATH + "/" + 4646)
+                        .contentType("application/json")
+
+        )
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testGetCourseById() throws Exception {
+        String courseId = createCourse();
+
+        mockMvc.perform(
+                get(COURSES_BASE_PATH + "/" + courseId)
+                        .contentType("application/json")
+
+        )
+                .andDo(print())
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.id").isNumber())
+                .andExpect(jsonPath("$.name").exists())
+                .andExpect(jsonPath("$.name").value(NAME))
+                .andExpect(jsonPath("$.year").exists())
+                .andExpect(jsonPath("$.year").value(YEAR))
+                .andExpect(jsonPath("$.learningOutcomes").exists())
+                .andExpect(jsonPath("$.learningOutcomes").isArray())
+                .andExpect(jsonPath("$.learningOutcomes[0].id").exists())
+                .andExpect(jsonPath("$.learningOutcomes[0].id").value(learningOutcome.getId()));
     }
 }
