@@ -14,7 +14,7 @@ public class LearningOutcome {
     private Category category;
 
     public LearningOutcome() {
-        this("Default", new Category());
+        this("Default", null);
     }
 
     public LearningOutcome(String n, Category c) {
@@ -43,6 +43,8 @@ public class LearningOutcome {
         if (!(o instanceof LearningOutcome)) return false;
         LearningOutcome b = (LearningOutcome) o;
         if (!name.equals(b.getName())) return false;
+        if (category == null && b.getCategory() != null || category != null && b.getCategory() == null) return false;
+        if (category == null && b.getCategory() == null) return true;
         if (!category.equals(b.getCategory())) return false;
         return true;
     }
