@@ -42,6 +42,9 @@ public class Category {
         return outcomes.get(index);
     }
     public List<LearningOutcome> getLearningOutcomes() { return outcomes; }
+    public void setLearningOutcomes(List<LearningOutcome> outcomes) {
+        this.outcomes = outcomes;
+    }
     public int getSize() { return outcomes.size(); }
 
     public void addLearningOutcome(LearningOutcome c) {

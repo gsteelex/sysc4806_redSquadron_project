@@ -44,7 +44,7 @@ The project has been newly created with a healthcheck endpoint operational, unit
 To be completed this iteration (03/08/2018):
 * Define endpoints as a team :heavy_check_mark:
 * Commit initial UML diagram :pencil2:
-* Create model objects for shared use and modification
+* Create model objects for shared use and modification :heavy_check_mark:
 * Create Endpoints under "/programs" with unit and integration tests :heavy_check_mark:
 * Create Endpoints under "/courses" with unit and integration tests (create course & get courses) :heavy_check_mark:
 * Create Endpoints under "/categories" with unit and integration tests

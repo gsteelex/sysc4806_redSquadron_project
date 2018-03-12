@@ -24,4 +24,17 @@ public class LearningOutcomeTest {
 		Assert.assertEquals("TestName", lo.getName());
 		Assert.assertEquals("TestCategory", lo.getCategory().getName());
 	}
+
+	@Test
+	public void equalsTest() throws Exception {
+    	LearningOutcome lo2 = new LearningOutcome();
+    	Category cat2 = new Category("TestCategory");
+    	lo2.setId(1);
+    	lo2.setCategory(cat2);
+    	lo2.setName("TestName");
+    	lo.setId(1);
+    	lo.setName("TestName");
+    	lo.setCategory(cat);
+		Assert.assertEquals(true, lo2.equals(lo));
+	}
 }
