@@ -1,8 +1,18 @@
-var handleProgramData = function(){
-    $.get("/programs", function(body){
+var handleProgramData = function() {
+    $.get("/programs", function (body) {
         $('#allPrograms').text('');
-        body.forEach(function(program){
-            $('#allPrograms').append($('<a href="/showPrograms/'+program.id  + '">' + program.name + '</a></br>'));
+        body.forEach(function (program) {
+            var appendUrl = $('<a href="/showPrograms/' + program.id + '">' + program.name + '</a></br>');
+            appendUrl.click(function (e) {
+                e.preventDefault();
+                var id = e.target.href.split('/')[e.target.href.split('/').length - 1];
+                $.get("/programs/" + id, function (program) {
+                    //displayProgram(program);
+                    alert(JSON.stringify(program));
+                });
+            });
+            $('#allPrograms').append(appendUrl);
+
         });
     });
 };
@@ -31,7 +41,7 @@ var handleCreateProgramFormSubmission = function (e) {
 
 
 var setUp = function(){
-    $('#allPrograms>a').click(function(e) {
+    $('#allPrograms a').click(function(e) {
         e.preventDefault();
         var id = e.target.href.split('/')[e.target.href.split('/').length - 1];
         $.get("/programs/" + id, function(program){
