@@ -29,7 +29,7 @@ public class GuiController {
 
         it.forEach(programs::add);
         model.addAttribute("programs", programs);
-        return "programs";
+        return "main";
     }
 
     @GetMapping("/showPrograms/{id}")
@@ -38,4 +38,7 @@ public class GuiController {
         model.addAttribute("program",program.get());
         return "program";
     }
+
+
+
 }
