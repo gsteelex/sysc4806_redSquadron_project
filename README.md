@@ -51,7 +51,7 @@ To be completed this iteration (03/08/2018):
 * Create UI page to list all programs with link to view a specific program (display some data, TA approved)
 
 To be completed for next iteration (03/15/2018):
-* Create endpoints for courses
+* Create endpoints for courses (Garrett)
 * Create endpoints for learning outcomes
 * Create courses and programs through GUI
 * View courses, programs, categories, and learning outcomes on GUI

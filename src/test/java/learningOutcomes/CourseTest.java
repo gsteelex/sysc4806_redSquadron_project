@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNull;
+
 public class CourseTest {
 
     Course course;
@@ -59,6 +61,12 @@ public class CourseTest {
         course.addLearningOutcome(lo);
         course2.addLearningOutcome(lo);
         Assert.assertTrue(course.equals(course2));
+    }
+
+    @Test
+    public void setOutcomesTest() {
+        course.setOutcomes(null);
+        assertNull(course.getLearningOutcomes());
     }
 
 }
