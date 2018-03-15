@@ -76,4 +76,14 @@ public class Program {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
+
+    public boolean hasCourseWithId(Integer id) {
+	    for (Course course: courses) {
+	        if (course.getId() == id) {
+	            return true;
+            }
+        }
+
+        return false;
+    }
 }
