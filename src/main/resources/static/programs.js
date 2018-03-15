@@ -18,6 +18,8 @@ var handleProgramData = function() {
 };
 
 
+
+
 var handleCreateProgramFormSubmission = function (e) {
     e.preventDefault();
 
@@ -27,7 +29,7 @@ var handleCreateProgramFormSubmission = function (e) {
     });
 
     console.log(programData);
-   // $.post('/programs', programData)
+    // $.post('/programs', programData)
     $.ajax({
         url:'/programs',
         type:'POST',
@@ -35,6 +37,26 @@ var handleCreateProgramFormSubmission = function (e) {
         contentType:'application/json',
         dataType:"json",
         success: handleProgramData
+    });
+};
+
+var handleCreateCourseFormSubmission = function (e) {
+    e.preventDefault();
+
+    var courseData = {};
+    var inputs = $('form#courseForm :input').serializeArray().forEach(function(input) {
+        courseData[input.name] = input.value;
+    });
+
+    console.log(courseData);
+
+    $.ajax({
+        url:'/courses',
+        type:'POST',
+        data: JSON.stringify(courseData),
+        contentType:'application/json',
+        dataType:"json",
+
     });
 };
 
@@ -53,6 +75,7 @@ var setUp = function(){
     });
 
     $('#programForm').submit(handleCreateProgramFormSubmission);
+    $('#courseForm').submit(handleCreateCourseFormSubmission);
 
 };
 

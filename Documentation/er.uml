@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Persistence</ID>
+  <OriginalElement>JavaeeElement:/40b8d7f7/entityManagerFactory/LearningOutcomesManagementSystem/jpa/JPA/PersistenceModel</OriginalElement>
+  <nodes>
+    <node x="2.0" y="248.0">Course#file://C:/Users/crazy/Documents/SYSC4806/sysc4806_redSquadron_project/src/main/java/learningOutcomes/Course.java</node>
+    <node x="0.0" y="124.0">LearningOutcome#file://C:/Users/crazy/Documents/SYSC4806/sysc4806_redSquadron_project/src/main/java/learningOutcomes/LearningOutcome.java</node>
+    <node x="212.5" y="11.0">null#null</node>
+    <node x="2.0" y="394.0">Program#file://C:/Users/crazy/Documents/SYSC4806/sysc4806_redSquadron_project/src/main/java/learningOutcomes/Program.java</node>
+    <node x="248.5" y="0.0">AbstractPersistable#jar://C:/Users/crazy/.m2/repository/org/springframework/data/spring-data-jpa/2.0.5.RELEASE/spring-data-jpa-2.0.5.RELEASE.jar!/org/springframework/data/jpa/domain/AbstractPersistable.class</node>
+    <node x="2.0" y="0.0">Category#file://C:/Users/crazy/Documents/SYSC4806/sysc4806_redSquadron_project/src/main/java/learningOutcomes/Category.java</node>
+    <node x="175.0" y="102.0">AbstractAuditable#jar://C:/Users/crazy/.m2/repository/org/springframework/data/spring-data-jpa/2.0.5.RELEASE/spring-data-jpa-2.0.5.RELEASE.jar!/org/springframework/data/jpa/domain/AbstractAuditable.class</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Program#file://C:/Users/crazy/Documents/SYSC4806/sysc4806_redSquadron_project/src/main/java/learningOutcomes/Program.java" target="Course#file://C:/Users/crazy/Documents/SYSC4806/sysc4806_redSquadron_project/src/main/java/learningOutcomes/Course.java">
+      <point x="0.0" y="-37.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="Course#file://C:/Users/crazy/Documents/SYSC4806/sysc4806_redSquadron_project/src/main/java/learningOutcomes/Course.java" target="LearningOutcome#file://C:/Users/crazy/Documents/SYSC4806/sysc4806_redSquadron_project/src/main/java/learningOutcomes/LearningOutcome.java">
+      <point x="0.0" y="-48.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="AbstractAuditable#jar://C:/Users/crazy/.m2/repository/org/springframework/data/spring-data-jpa/2.0.5.RELEASE/spring-data-jpa-2.0.5.RELEASE.jar!/org/springframework/data/jpa/domain/AbstractAuditable.class" target="AbstractPersistable#jar://C:/Users/crazy/.m2/repository/org/springframework/data/spring-data-jpa/2.0.5.RELEASE/spring-data-jpa-2.0.5.RELEASE.jar!/org/springframework/data/jpa/domain/AbstractPersistable.class">
+      <point x="46.5" y="-37.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="LearningOutcome#file://C:/Users/crazy/Documents/SYSC4806/sysc4806_redSquadron_project/src/main/java/learningOutcomes/LearningOutcome.java" target="Category#file://C:/Users/crazy/Documents/SYSC4806/sysc4806_redSquadron_project/src/main/java/learningOutcomes/Category.java">
+      <point x="-32.5" y="-37.0" />
+      <point x="-31.5" y="37.0" />
+    </edge>
+    <edge source="AbstractAuditable#jar://C:/Users/crazy/.m2/repository/org/springframework/data/spring-data-jpa/2.0.5.RELEASE/spring-data-jpa-2.0.5.RELEASE.jar!/org/springframework/data/jpa/domain/AbstractAuditable.class" target="null#null">
+      <point x="-46.5" y="-37.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Category#file://C:/Users/crazy/Documents/SYSC4806/sysc4806_redSquadron_project/src/main/java/learningOutcomes/Category.java" target="LearningOutcome#file://C:/Users/crazy/Documents/SYSC4806/sysc4806_redSquadron_project/src/main/java/learningOutcomes/LearningOutcome.java">
+      <point x="31.5" y="37.0" />
+      <point x="32.5" y="-37.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9016393442622951" x="191.5" y="234.0" />
+  <SelectedNodes>
+    <node>null#null</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Properties</Category>
+    <Category>Embeddables</Category>
+    <Category>Superclasses</Category>
+  </Categories>
+</Diagram>
+
