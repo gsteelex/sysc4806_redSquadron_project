@@ -22,7 +22,7 @@ public class GuiController {
         this.repo = repo;
     }
 
-    @GetMapping("/showPrograms")
+    @GetMapping("/")
     public String showPrograms(Model model){
         List<Program> programs =  new ArrayList<>();
         Iterable<Program> it=repo.findAll();
