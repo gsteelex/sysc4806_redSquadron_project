@@ -37,7 +37,7 @@ var handleCreateCourseFormSubmission = function (e) {
         courseData[input.name] = input.value;
     });
 
-    console.log(courseData);
+ 
 
     $.ajax({
         url:'/courses',
