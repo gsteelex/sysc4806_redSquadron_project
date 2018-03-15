@@ -10,7 +10,7 @@ var clearCourses = function() {
 var displayCourse = function(course) {
     var learningOutcomes = course.learningOutcomes.map(outcome => outcome.name);
 
-    //TODO: this will be come back to one the courses can have learning outcomes
+    //TODO: this will be revisited once the courses can have learning outcomes
     var courseDiv = $('<tr id="course' + course.id + '">' +
         '<td>' + course.name + '</td>' +
         '<td>' + course.year + '</td>' +
