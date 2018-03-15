@@ -2,11 +2,13 @@ package learningOutcomes.controllers;
 
 import learningOutcomes.Course;
 import learningOutcomes.LearningOutcome;
+import learningOutcomes.Program;
 import learningOutcomes.aspects.CourseExistsValidated;
 import learningOutcomes.aspects.CourseRequestValidated;
 import learningOutcomes.controllers.requestModels.CourseRequest;
 import learningOutcomes.repositories.CourseRepository;
 import learningOutcomes.repositories.LearningOutcomeRepository;
+import learningOutcomes.repositories.ProgramRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,13 +28,14 @@ public class CoursesController {
 
     private CourseRepository courseRepository;
     private LearningOutcomeRepository learningOutcomeRepository;
+    private ProgramRepository programRepository;
 
     @Autowired
-    public CoursesController(CourseRepository courseRepository, LearningOutcomeRepository learningOutcomeRepository) {
+    public CoursesController(CourseRepository courseRepository, LearningOutcomeRepository learningOutcomeRepository, ProgramRepository programRepository) {
         this.courseRepository = courseRepository;
         this.learningOutcomeRepository = learningOutcomeRepository;
+        this.programRepository = programRepository;
     }
-
 
     /**
      * Controller endpoint to list all Courses.
@@ -88,14 +91,23 @@ public class CoursesController {
     /**
      * Controller method to delete a Course by its ID, returns SC_NO_CONTENT when no Course existed
      * @param id the ID of the Course to delete
-     * @param response used to send SC_NO_CONTENT
+     * @param response used to send errors
      * @return the deleted Course or null if the course did not exist
      */
     @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-    public Course deleteCourseById(@PathVariable("id") Integer id, HttpServletResponse response) {
+    public Course deleteCourseById(@PathVariable("id") Integer id, HttpServletResponse response) throws IOException {
         Optional<Course> course = courseRepository.findById(id);
 
         if (course.isPresent()) {
+            Iterable<Program> programs = programRepository.findAll();
+
+            for (Program program: programs) {
+                if (program.hasCourseWithId(id)) {
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "course belongs to a program with id: " + program.getId() + ", please remove the course form the program before deleting");
+                    return null;
+                }
+            }
+
             Course courseToReturn = course.get();
             courseRepository.delete(course.get());
             return courseToReturn;
