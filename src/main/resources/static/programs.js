@@ -7,7 +7,7 @@ var handleProgramData = function() {
                 e.preventDefault();
                 var id = e.target.href.split('/')[e.target.href.split('/').length - 1];
                 $.get("/programs/" + id, function (program) {
-                    //displayProgram(program);
+
                     alert(JSON.stringify(program));
                 });
             });
@@ -25,8 +25,6 @@ var handleCreateProgramFormSubmission = function (e) {
         programData[input.name] = input.value;
     });
 
-    console.log(programData);
-    // $.post('/programs', programData)
     $.ajax({
         url:'/programs',
         type:'POST',
@@ -45,7 +43,7 @@ var setUp = function(){
         e.preventDefault();
         var id = e.target.href.split('/')[e.target.href.split('/').length - 1];
         $.get("/programs/" + id, function(program){
-            //displayProgram(program);
+
             alert(JSON.stringify(program));
         });
 
