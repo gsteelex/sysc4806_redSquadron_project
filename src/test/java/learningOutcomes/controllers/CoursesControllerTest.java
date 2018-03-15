@@ -4,7 +4,10 @@ package learningOutcomes.controllers;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import learningOutcomes.LearningOutcome;
+import learningOutcomes.Program;
+import learningOutcomes.repositories.CourseRepository;
 import learningOutcomes.repositories.LearningOutcomeRepository;
+import learningOutcomes.repositories.ProgramRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,6 +39,10 @@ public class CoursesControllerTest {
     @Autowired
     private LearningOutcomeRepository learningOutcomeRepository;
     private LearningOutcome learningOutcome;
+    @Autowired
+    private ProgramRepository programRepository;
+    @Autowired
+    private CourseRepository courseRepository;
 
     @Autowired
     private MockMvc mockMvc;
@@ -186,6 +193,26 @@ public class CoursesControllerTest {
     }
 
     @Test
+    public void testDeleteCourseById_BelongsToProgram() throws Exception {
+        String courseId = createCourse();
+
+        Program program = new Program();
+        program.addCourse(courseRepository.findById(new Integer(courseId)).get());
+
+        programRepository.save(program);
+
+        MvcResult result = mockMvc.perform(
+                delete(COURSES_BASE_PATH + "/" + courseId)
+        )
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andReturn();
+
+        assertEquals("course belongs to a program with id: " + program.getId() + ", please remove the course form the program before deleting", result.getResponse().getErrorMessage());
+    }
+
+
+    @Test
     public void testGetCourseById_CourseDoesNotExist() throws Exception {
         mockMvc.perform(
                 get(COURSES_BASE_PATH + "/" + 4646)
@@ -243,7 +270,7 @@ public class CoursesControllerTest {
     }
 
     @Test
-    public void testUpdateProgramById_EmptyLearningOutcomes() throws Exception {
+    public void testUpdateCourseById_EmptyLearningOutcomes() throws Exception {
         String courseId = createCourse();
 
         mockMvc.perform(
@@ -264,7 +291,7 @@ public class CoursesControllerTest {
     }
 
     @Test
-    public void testUpdateProgramById_LearningOutcomeDoesNotExist() throws Exception {
+    public void testUpdateCourseById_LearningOutcomeDoesNotExist() throws Exception {
         String courseId = createCourse();
 
         MvcResult result = mockMvc.perform(
@@ -280,7 +307,7 @@ public class CoursesControllerTest {
     }
 
     @Test
-    public void testUpdateProgramById_LearningOutcomesUntouched() throws Exception {
+    public void testUpdateCourseById_LearningOutcomesUntouched() throws Exception {
         String courseId = createCourse();
 
         mockMvc.perform(
@@ -302,7 +329,7 @@ public class CoursesControllerTest {
     }
 
     @Test
-    public void testUpdateProgramById_LearningOutcomeExists() throws Exception {
+    public void testUpdateCourseById_LearningOutcomeExists() throws Exception {
         String courseId = createCourse();
 
         mockMvc.perform(

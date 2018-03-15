@@ -135,8 +135,7 @@ public class ProgramsControllerTest {
                 .andExpect(jsonPath("$").isNotEmpty())
                 .andExpect(jsonPath("$[0].id").exists())
                 .andExpect(jsonPath("$[0].id").isNumber())
-                .andExpect(jsonPath("$[0].name").exists())
-                .andExpect(jsonPath("$[0].name").value(NAME));
+                .andExpect(jsonPath("$[0].name").exists());
     }
 
     @Test

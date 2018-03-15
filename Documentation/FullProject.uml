@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>learningOutcomes.aspects.CategoryExistsValidated</OriginalElement>
+  <nodes>
+    <node x="3066.657323688968" y="319.0">learningOutcomes.aspects.CategoryNameValidated</node>
+    <node x="3558.657323688968" y="319.0">learningOutcomes.aspects.CourseExistsValidated</node>
+    <node x="4832.487047920432" y="673.0">learningOutcomes.Application</node>
+    <node x="3981.657323688968" y="319.0">learningOutcomes.aspects.ProgramExistsValidated</node>
+    <node x="2923.157323688968" y="2081.0">org.springframework.web.bind.annotation.RequestMapping</node>
+    <node x="4560.237047920432" y="2753.5">learningOutcomes.controllers.GuiController</node>
+    <node x="4674.987047920432" y="1601.5">org.springframework.stereotype.Controller</node>
+    <node x="2553.6249999999995" y="2107.5">learningOutcomes.controllers.requestModels.ProgramRequest</node>
+    <node x="729.0" y="2753.5">learningOutcomes.aspects.CoursePathAspect</node>
+    <node x="1424.892224231464" y="2107.5">learningOutcomes.controllers.requestModels.CategoryRequest</node>
+    <node x="249.31525768535175" y="2175.5">org.aspectj.lang.annotation.Aspect</node>
+    <node x="3177.4073236889685" y="2686.0">learningOutcomes.controllers.CoursesController</node>
+    <node x="3638.0967902350803" y="1358.0">learningOutcomes.Course</node>
+    <node x="0.0" y="2753.5">learningOutcomes.aspects.CategoryPathAspect</node>
+    <node x="3985.445381253765" y="1959.0">learningOutcomes.Program</node>
+    <node x="4954.403714587099" y="2148.0">learningOutcomes.HealthCheck</node>
+    <node x="819.9255575647976" y="2121.5">org.springframework.web.bind.annotation.ControllerAdvice</node>
+    <node x="3786.657323688968" y="305.5">javax.persistence.Entity</node>
+    <node x="4771.987047920432" y="265.0">org.springframework.boot.autoconfigure.SpringBootApplication</node>
+    <node x="2005.1918098251947" y="2067.0">learningOutcomes.controllers.requestModels.CourseRequest</node>
+    <node x="4534.22179023508" y="2175.5">org.springframework.web.bind.annotation.RestController</node>
+    <node x="3759.4073236889685" y="2699.5">learningOutcomes.controllers.ProgramsController</node>
+    <node x="5122.987047920432" y="319.0">learningOutcomes.aspects.CategoryExistsValidated</node>
+    <node x="442.31525768535175" y="2175.5">org.springframework.context.annotation.Configuration</node>
+    <node x="4221.657323688968" y="319.0">learningOutcomes.aspects.ProgramNameValidated</node>
+    <node x="2234.1249999999995" y="2699.5">learningOutcomes.controllers.CategoriesController</node>
+    <node x="3493.3717902350804" y="1000.0">learningOutcomes.LearningOutcome</node>
+    <node x="4906.237047920432" y="2781.0">learningOutcomes.controllers.HealthCheckController</node>
+    <node x="3646.057881253765" y="0.0">java.lang.annotation.Annotation</node>
+    <node x="3296.400361663652" y="470.0">learningOutcomes.Category</node>
+    <node x="3313.657323688968" y="319.0">learningOutcomes.aspects.CourseRequestValidated</node>
+    <node x="1428.0" y="2753.5">learningOutcomes.aspects.ProgramPathAspect</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="learningOutcomes.aspects.ProgramPathAspect" target="learningOutcomes.Program">
+      <point x="281.1999999999998" y="-59.5" />
+      <point x="2060.7" y="2626.0" />
+      <point x="4016.6453812537648" y="2626.0" />
+      <point x="-124.80000000000018" y="248.5" />
+    </edge>
+    <edge source="learningOutcomes.Program" target="learningOutcomes.Course">
+      <point x="-104.0" y="-248.5" />
+      <point x="4037.445381253765" y="1939.0" />
+      <point x="3948.5967902350803" y="1939.0" />
+      <point x="103.5" y="275.5" />
+    </edge>
+    <edge source="learningOutcomes.LearningOutcome" target="javax.persistence.Entity">
+      <point x="106.80000000000018" y="-154.0" />
+      <point x="3733.6717902350806" y="980.0" />
+      <point x="3913.6249999999995" y="980.0" />
+      <point x="3913.6249999999995" y="450.0" />
+      <point x="3852.282323688968" y="450.0" />
+      <point x="-21.875" y="32.0" />
+    </edge>
+    <edge source="org.springframework.boot.autoconfigure.SpringBootApplication" target="java.lang.annotation.Annotation">
+      <point x="0.0" y="-72.5" />
+      <point x="4937.487047920432" y="205.0" />
+      <point x="4002.4578812537657" y="205.0" />
+      <point x="158.4000000000001" y="72.5" />
+    </edge>
+    <edge source="java.lang.annotation.Annotation" target="java.lang.annotation.Annotation">
+      <point x="-184.79999999999995" y="72.5" />
+      <point x="3659.2578812537654" y="165.0" />
+      <point x="3626.057881253765" y="165.0" />
+      <point x="3626.057881253765" y="72.5" />
+      <point x="-198.0" y="-0.0" />
+    </edge>
+    <edge source="learningOutcomes.aspects.CoursePathAspect" target="learningOutcomes.controllers.requestModels.CourseRequest">
+      <point x="271.5999999999999" y="-59.5" />
+      <point x="1340.1" y="2606.0" />
+      <point x="2095.1918098251945" y="2606.0" />
+      <point x="-90.0" y="140.5" />
+    </edge>
+    <edge source="learningOutcomes.controllers.ProgramsController" target="org.springframework.web.bind.annotation.RestController">
+      <point x="249.16666666666606" y="-113.5" />
+      <point x="4307.573990355635" y="2666.0" />
+      <point x="4642.34679023508" y="2666.0" />
+      <point x="21.625" y="32.0" />
+    </edge>
+    <edge source="learningOutcomes.aspects.CategoryPathAspect" target="learningOutcomes.controllers.requestModels.CategoryRequest">
+      <point x="283.6" y="-59.5" />
+      <point x="638.0999999999999" y="2596.0" />
+      <point x="1523.642224231464" y="2596.0" />
+      <point x="-98.75" y="100.0" />
+    </edge>
+    <edge source="learningOutcomes.controllers.CategoriesController" target="learningOutcomes.Category">
+      <point x="-50.583333333333485" y="-113.5" />
+      <point x="2487.041666666666" y="2606.0" />
+      <point x="2499.2553194695593" y="2606.0" />
+      <point x="2499.2553194695593" y="980.0" />
+      <point x="3450.3289330922235" y="980.0" />
+      <point x="-61.57142857142844" y="235.0" />
+    </edge>
+    <edge source="learningOutcomes.Category" target="learningOutcomes.LearningOutcome">
+      <point x="184.71428571428578" y="235.0" />
+      <point x="3696.6146473779377" y="980.0" />
+      <point x="3680.2717902350805" y="980.0" />
+      <point x="53.40000000000009" y="-154.0" />
+    </edge>
+    <edge source="learningOutcomes.controllers.CategoriesController" target="learningOutcomes.LearningOutcome">
+      <point x="50.583333333333485" y="-113.5" />
+      <point x="2588.208333333333" y="2606.0" />
+      <point x="2510.2553194695593" y="2606.0" />
+      <point x="2510.2553194695593" y="1333.0" />
+      <point x="3526.7467902350804" y="1333.0" />
+      <point x="-100.125" y="154.0" />
+    </edge>
+    <edge source="learningOutcomes.aspects.CoursePathAspect" target="org.springframework.context.annotation.Configuration">
+      <point x="-135.79999999999995" y="-59.5" />
+      <point x="932.7" y="2566.0" />
+      <point x="528.8152576853518" y="2566.0" />
+      <point x="0.0" y="32.0" />
+    </edge>
+    <edge source="learningOutcomes.Course" target="javax.persistence.Entity">
+      <point x="138.0000000000001" y="-275.5" />
+      <point x="3983.0967902350803" y="1333.0" />
+      <point x="3939.6964285714284" y="1333.0" />
+      <point x="3939.6964285714284" y="440.0" />
+      <point x="3896.032323688968" y="440.0" />
+      <point x="21.875" y="32.0" />
+    </edge>
+    <edge source="learningOutcomes.Course" target="learningOutcomes.LearningOutcome">
+      <point x="0.0" y="-275.5" />
+      <point x="3845.0967902350803" y="1333.0" />
+      <point x="3726.9967902350804" y="1333.0" />
+      <point x="100.125" y="154.0" />
+    </edge>
+    <edge source="learningOutcomes.aspects.ProgramPathAspect" target="learningOutcomes.controllers.requestModels.ProgramRequest">
+      <point x="140.5999999999999" y="-59.5" />
+      <point x="1920.1" y="2616.0" />
+      <point x="2625.3749999999995" y="2616.0" />
+      <point x="-71.75" y="100.0" />
+    </edge>
+    <edge source="learningOutcomes.aspects.CategoryPathAspect" target="org.springframework.web.bind.annotation.ControllerAdvice">
+      <point x="141.79999999999995" y="-59.5" />
+      <point x="496.3000000000002" y="2586.0" />
+      <point x="883.2588908981309" y="2586.0" />
+      <point x="-126.66666666666669" y="86.0" />
+    </edge>
+    <edge source="learningOutcomes.aspects.ProgramPathAspect" target="org.springframework.context.annotation.Configuration">
+      <point x="-140.60000000000014" y="-59.5" />
+      <point x="1638.8999999999999" y="2546.0" />
+      <point x="586.4819243520183" y="2546.0" />
+      <point x="57.66666666666663" y="32.0" />
+    </edge>
+    <edge source="learningOutcomes.aspects.ProgramNameValidated" target="java.lang.annotation.Annotation">
+      <point x="0.0" y="-18.5" />
+      <point x="4333.657323688968" y="235.0" />
+      <point x="3923.257881253765" y="235.0" />
+      <point x="79.19999999999982" y="72.5" />
+    </edge>
+    <edge source="learningOutcomes.aspects.CourseExistsValidated" target="java.lang.annotation.Annotation">
+      <point x="0.0" y="-18.5" />
+      <point x="3662.657323688968" y="245.0" />
+      <point x="3844.057881253765" y="245.0" />
+      <point x="0.0" y="72.5" />
+    </edge>
+    <edge source="learningOutcomes.Category" target="javax.persistence.Entity">
+      <point x="0.0" y="-235.0" />
+      <point x="3511.900361663652" y="450.0" />
+      <point x="3808.532323688968" y="450.0" />
+      <point x="-65.625" y="32.0" />
+    </edge>
+    <edge source="org.aspectj.lang.annotation.Aspect" target="java.lang.annotation.Annotation">
+      <point x="0.0" y="-32.0" />
+      <point x="335.81525768535175" y="185.0" />
+      <point x="3685.6578812537655" y="185.0" />
+      <point x="-158.4000000000001" y="72.5" />
+    </edge>
+    <edge source="learningOutcomes.aspects.CategoryPathAspect" target="learningOutcomes.Category">
+      <point x="-283.5999999999999" y="-59.5" />
+      <point x="70.90000000000009" y="2666.0" />
+      <point x="122.16666666666697" y="2666.0" />
+      <point x="122.16666666666697" y="960.0" />
+      <point x="3327.186075949366" y="960.0" />
+      <point x="-184.71428571428578" y="235.0" />
+    </edge>
+    <edge source="learningOutcomes.controllers.HealthCheckController" target="org.springframework.web.bind.annotation.RestController">
+      <point x="-87.33333333333303" y="-32.0" />
+      <point x="4949.903714587099" y="2666.0" />
+      <point x="4685.59679023508" y="2666.0" />
+      <point x="64.875" y="32.0" />
+    </edge>
+    <edge source="learningOutcomes.aspects.CategoryPathAspect" target="org.aspectj.lang.annotation.Aspect">
+      <point x="-141.8" y="-59.5" />
+      <point x="212.69999999999982" y="2666.0" />
+      <point x="278.1485910186848" y="2666.0" />
+      <point x="-57.66666666666674" y="32.0" />
+    </edge>
+    <edge source="learningOutcomes.aspects.CoursePathAspect" target="learningOutcomes.Course">
+      <point x="135.79999999999995" y="-59.5" />
+      <point x="1204.3" y="2586.0" />
+      <point x="1210.4255575647974" y="2586.0" />
+      <point x="1210.4255575647974" y="1929.0" />
+      <point x="3672.5967902350803" y="1929.0" />
+      <point x="-172.5" y="275.5" />
+    </edge>
+    <edge source="learningOutcomes.controllers.CoursesController" target="org.springframework.web.bind.annotation.RestController">
+      <point x="240.85714285714266" y="-127.0" />
+      <point x="3699.264466546111" y="2656.0" />
+      <point x="4599.09679023508" y="2656.0" />
+      <point x="-21.625" y="32.0" />
+    </edge>
+    <edge source="org.springframework.stereotype.Controller" target="java.lang.annotation.Annotation">
+      <point x="0.0" y="-32.0" />
+      <point x="4761.487047920432" y="215.0" />
+      <point x="3976.057881253765" y="215.0" />
+      <point x="132.0" y="72.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.Configuration" target="java.lang.annotation.Annotation">
+      <point x="0.0" y="-32.0" />
+      <point x="528.8152576853518" y="195.0" />
+      <point x="3712.057881253765" y="195.0" />
+      <point x="-132.0" y="72.5" />
+    </edge>
+    <edge source="learningOutcomes.controllers.CategoriesController" target="org.springframework.web.bind.annotation.RestController">
+      <point x="252.91666666666652" y="-113.5" />
+      <point x="2790.541666666666" y="2646.0" />
+      <point x="4555.84679023508" y="2646.0" />
+      <point x="-64.875" y="32.0" />
+    </edge>
+    <edge source="learningOutcomes.controllers.CoursesController" target="learningOutcomes.controllers.requestModels.CourseRequest">
+      <point x="-240.85714285714266" y="-127.0" />
+      <point x="3217.550180831826" y="2516.0" />
+      <point x="2275.1918098251945" y="2516.0" />
+      <point x="90.0" y="140.5" />
+    </edge>
+    <edge source="learningOutcomes.controllers.GuiController" target="learningOutcomes.Program">
+      <point x="-81.5" y="-59.5" />
+      <point x="4641.737047920432" y="2636.0" />
+      <point x="4266.245381253765" y="2636.0" />
+      <point x="124.80000000000018" y="248.5" />
+    </edge>
+    <edge source="learningOutcomes.controllers.CoursesController" target="learningOutcomes.Program">
+      <point x="160.57142857142844" y="-127.0" />
+      <point x="3618.978752260397" y="2636.0" />
+      <point x="4079.0453812537653" y="2636.0" />
+      <point x="-62.40000000000009" y="248.5" />
+    </edge>
+    <edge source="org.springframework.web.bind.annotation.RestController" target="org.springframework.stereotype.Controller">
+      <point x="43.25" y="-32.0" />
+      <point x="4663.97179023508" y="1939.0" />
+      <point x="4718.237047920432" y="1939.0" />
+      <point x="-43.25" y="32.0" />
+    </edge>
+    <edge source="learningOutcomes.LearningOutcome" target="learningOutcomes.Category">
+      <point x="-106.80000000000018" y="-154.0" />
+      <point x="3520.0717902350802" y="980.0" />
+      <point x="3511.900361663652" y="980.0" />
+      <point x="0.0" y="235.0" />
+    </edge>
+    <edge source="learningOutcomes.Application" target="org.springframework.boot.autoconfigure.SpringBootApplication">
+      <point x="0.0" y="-32.0" />
+      <point x="0.0" y="72.5" />
+    </edge>
+    <edge source="org.springframework.web.bind.annotation.ControllerAdvice" target="java.lang.annotation.Annotation">
+      <point x="0.0" y="-86.0" />
+      <point x="1009.9255575647974" y="205.0" />
+      <point x="3738.4578812537657" y="205.0" />
+      <point x="-105.59999999999991" y="72.5" />
+    </edge>
+    <edge source="learningOutcomes.aspects.ProgramPathAspect" target="org.aspectj.lang.annotation.Aspect">
+      <point x="-281.20000000000005" y="-59.5" />
+      <point x="1498.3" y="2556.0" />
+      <point x="393.4819243520187" y="2556.0" />
+      <point x="57.66666666666674" y="32.0" />
+    </edge>
+    <edge source="learningOutcomes.aspects.CategoryNameValidated" target="java.lang.annotation.Annotation">
+      <point x="0.0" y="-18.5" />
+      <point x="3180.157323688968" y="225.0" />
+      <point x="3791.257881253765" y="225.0" />
+      <point x="-52.80000000000018" y="72.5" />
+    </edge>
+    <edge source="learningOutcomes.aspects.CategoryExistsValidated" target="java.lang.annotation.Annotation">
+      <point x="0.0" y="-18.5" />
+      <point x="5234.487047920432" y="195.0" />
+      <point x="4028.8578812537653" y="195.0" />
+      <point x="184.80000000000018" y="72.5" />
+    </edge>
+    <edge source="javax.persistence.Entity" target="java.lang.annotation.Annotation">
+      <point x="0.0" y="-32.0" />
+      <point x="3874.157323688968" y="245.0" />
+      <point x="3870.4578812537657" y="245.0" />
+      <point x="26.40000000000009" y="72.5" />
+    </edge>
+    <edge source="learningOutcomes.controllers.GuiController" target="org.springframework.stereotype.Controller">
+      <point x="81.5" y="-59.5" />
+      <point x="43.25" y="32.0" />
+    </edge>
+    <edge source="learningOutcomes.aspects.CategoryPathAspect" target="org.springframework.context.annotation.Configuration">
+      <point x="0.0" y="-59.5" />
+      <point x="354.5" y="2666.0" />
+      <point x="471.14859101868524" y="2666.0" />
+      <point x="-57.66666666666663" y="32.0" />
+    </edge>
+    <edge source="learningOutcomes.controllers.ProgramsController" target="learningOutcomes.Program">
+      <point x="149.49999999999955" y="-113.5" />
+      <point x="4207.907323688968" y="2636.0" />
+      <point x="4203.845381253765" y="2636.0" />
+      <point x="62.399999999999636" y="248.5" />
+    </edge>
+    <edge source="learningOutcomes.controllers.CoursesController" target="learningOutcomes.LearningOutcome">
+      <point x="-80.28571428571422" y="-127.0" />
+      <point x="3378.1216094032543" y="2596.0" />
+      <point x="3536.9078812537655" y="2596.0" />
+      <point x="3536.9078812537655" y="1333.0" />
+      <point x="3593.4967902350804" y="1333.0" />
+      <point x="-33.375" y="154.0" />
+    </edge>
+    <edge source="org.springframework.web.bind.annotation.RequestMapping" target="java.lang.annotation.Annotation">
+      <point x="0.0" y="-126.5" />
+      <point x="3056.157323688968" y="215.0" />
+      <point x="3764.8578812537653" y="215.0" />
+      <point x="-79.19999999999982" y="72.5" />
+    </edge>
+    <edge source="learningOutcomes.aspects.ProgramExistsValidated" target="java.lang.annotation.Annotation">
+      <point x="0.0" y="-18.5" />
+      <point x="4091.657323688968" y="245.0" />
+      <point x="3896.8578812537653" y="245.0" />
+      <point x="52.80000000000018" y="72.5" />
+    </edge>
+    <edge source="learningOutcomes.controllers.HealthCheckController" target="learningOutcomes.HealthCheck">
+      <point x="87.33333333333303" y="-32.0" />
+      <point x="5124.570381253765" y="2666.0" />
+      <point x="5144.153714587099" y="2666.0" />
+      <point x="63.25" y="59.5" />
+    </edge>
+    <edge source="learningOutcomes.Program" target="javax.persistence.Entity">
+      <point x="104.0" y="-248.5" />
+      <point x="4245.445381253765" y="1939.0" />
+      <point x="4179.109486136225" y="1939.0" />
+      <point x="4179.109486136225" y="430.0" />
+      <point x="3939.782323688968" y="430.0" />
+      <point x="65.62499999999989" y="32.0" />
+    </edge>
+    <edge source="learningOutcomes.controllers.ProgramsController" target="learningOutcomes.Course">
+      <point x="-49.83333333333394" y="-113.5" />
+      <point x="4008.5739903556346" y="2476.0" />
+      <point x="3836.3467902350803" y="2476.0" />
+      <point x="3836.3467902350803" y="1939.0" />
+      <point x="3879.5967902350803" y="1939.0" />
+      <point x="34.5" y="275.5" />
+    </edge>
+    <edge source="learningOutcomes.controllers.ProgramsController" target="org.springframework.web.bind.annotation.RequestMapping">
+      <point x="-149.50000000000045" y="-113.5" />
+      <point x="3908.907323688968" y="2486.0" />
+      <point x="3144.8239903556346" y="2486.0" />
+      <point x="88.66666666666652" y="126.5" />
+    </edge>
+    <edge source="learningOutcomes.controllers.ProgramsController" target="learningOutcomes.controllers.requestModels.ProgramRequest">
+      <point x="-249.16666666666742" y="-113.5" />
+      <point x="3809.240657022301" y="2496.0" />
+      <point x="2768.8749999999995" y="2496.0" />
+      <point x="71.75" y="100.0" />
+    </edge>
+    <edge source="org.springframework.web.bind.annotation.RestController" target="java.lang.annotation.Annotation">
+      <point x="-43.25" y="-32.0" />
+      <point x="4577.47179023508" y="225.0" />
+      <point x="3949.6578812537655" y="225.0" />
+      <point x="105.59999999999991" y="72.5" />
+    </edge>
+    <edge source="learningOutcomes.aspects.CourseRequestValidated" target="java.lang.annotation.Annotation">
+      <point x="0.0" y="-18.5" />
+      <point x="3426.157323688968" y="235.0" />
+      <point x="3817.6578812537655" y="235.0" />
+      <point x="-26.40000000000009" y="72.5" />
+    </edge>
+    <edge source="learningOutcomes.aspects.ProgramPathAspect" target="org.springframework.web.bind.annotation.ControllerAdvice">
+      <point x="0.0" y="-59.5" />
+      <point x="1779.5" y="2536.0" />
+      <point x="1136.5922242314643" y="2536.0" />
+      <point x="126.66666666666674" y="86.0" />
+    </edge>
+    <edge source="learningOutcomes.controllers.CategoriesController" target="learningOutcomes.controllers.requestModels.CategoryRequest">
+      <point x="-252.91666666666652" y="-113.5" />
+      <point x="2284.708333333333" y="2526.0" />
+      <point x="1721.142224231464" y="2526.0" />
+      <point x="98.75" y="100.0" />
+    </edge>
+    <edge source="learningOutcomes.controllers.CoursesController" target="org.springframework.web.bind.annotation.RequestMapping">
+      <point x="-160.57142857142844" y="-127.0" />
+      <point x="3297.83589511754" y="2506.0" />
+      <point x="3056.157323688968" y="2506.0" />
+      <point x="0.0" y="126.5" />
+    </edge>
+    <edge source="learningOutcomes.aspects.CoursePathAspect" target="org.springframework.web.bind.annotation.ControllerAdvice">
+      <point x="0.0" y="-59.5" />
+      <point x="1068.5" y="2586.0" />
+      <point x="1009.9255575647976" y="2586.0" />
+      <point x="0.0" y="86.0" />
+    </edge>
+    <edge source="learningOutcomes.controllers.CoursesController" target="learningOutcomes.Course">
+      <point x="80.28571428571422" y="-127.0" />
+      <point x="3538.6930379746827" y="2616.0" />
+      <point x="3807.7589285714284" y="2616.0" />
+      <point x="3807.7589285714284" y="1939.0" />
+      <point x="3810.5967902350803" y="1939.0" />
+      <point x="-34.5" y="275.5" />
+    </edge>
+    <edge source="learningOutcomes.controllers.CategoriesController" target="org.springframework.web.bind.annotation.RequestMapping">
+      <point x="151.75" y="-113.5" />
+      <point x="2689.3749999999995" y="2616.0" />
+      <point x="2967.4906570223015" y="2616.0" />
+      <point x="-88.66666666666652" y="126.5" />
+    </edge>
+    <edge source="learningOutcomes.aspects.CoursePathAspect" target="org.aspectj.lang.annotation.Aspect">
+      <point x="-271.6" y="-59.5" />
+      <point x="796.9000000000001" y="2576.0" />
+      <point x="335.81525768535175" y="2576.0" />
+      <point x="0.0" y="32.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.1831081081081081" x="2673.0" y="1470.0" />
+  <SelectedNodes>
+    <node>learningOutcomes.aspects.CategoryExistsValidated</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
