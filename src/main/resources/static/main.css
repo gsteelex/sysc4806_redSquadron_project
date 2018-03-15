@@ -1,0 +1,33 @@
+h1 {
+    font-style: italic;
+}
+
+table {
+    margin-left: 20px;
+}
+
+table, td, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 8px;
+}
+
+th {
+    color: white;
+    background: red;
+}
+
+tr:nth-child(even) {
+    background: white;
+}
+
+tr:nth-child(odd) {
+    background: #ffcccc;
+}
+
+body {
+    background: #dddddd;
+}
