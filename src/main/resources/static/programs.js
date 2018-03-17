@@ -7,7 +7,7 @@ var handleProgramData = function() {
                 e.preventDefault();
                 var id = e.target.href.split('/')[e.target.href.split('/').length - 1];
                 $.get("/programs/" + id, function (program) {
-                    //displayProgram(program);
+
                     alert(JSON.stringify(program));
                 });
             });
@@ -17,7 +17,6 @@ var handleProgramData = function() {
     });
 };
 
-
 var handleCreateProgramFormSubmission = function (e) {
     e.preventDefault();
 
@@ -26,8 +25,6 @@ var handleCreateProgramFormSubmission = function (e) {
         programData[input.name] = input.value;
     });
 
-    console.log(programData);
-   // $.post('/programs', programData)
     $.ajax({
         url:'/programs',
         type:'POST',
@@ -40,15 +37,15 @@ var handleCreateProgramFormSubmission = function (e) {
 
 
 
+
 var setUp = function(){
     $('#allPrograms a').click(function(e) {
         e.preventDefault();
         var id = e.target.href.split('/')[e.target.href.split('/').length - 1];
         $.get("/programs/" + id, function(program){
-            //displayProgram(program);
+
             alert(JSON.stringify(program));
         });
-
 
     });
 

@@ -29,10 +29,30 @@ var displayCourseList = function() {
         courseList.forEach(displayCourse);
     });
 };
+var handleCreateCourseFormSubmission = function (e) {
+    e.preventDefault();
+
+    var courseData = {};
+    var inputs = $('form#courseForm :input').serializeArray().forEach(function(input) {
+        courseData[input.name] = input.value;
+    });
+
+ 
+
+    $.ajax({
+        url:'/courses',
+        type:'POST',
+        data: JSON.stringify(courseData),
+        contentType:'application/json',
+        dataType:"json",
+        success: displayCourseList
+    });
+};
 
 
 var setUp = function() {
     displayCourseList();
+    $('#courseForm').submit(handleCreateCourseFormSubmission);
 };
 
 
