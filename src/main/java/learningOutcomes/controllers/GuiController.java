@@ -22,14 +22,14 @@ public class GuiController {
         this.repo = repo;
     }
 
-    @GetMapping("/showPrograms")
+    @GetMapping("/")
     public String showPrograms(Model model){
         List<Program> programs =  new ArrayList<>();
         Iterable<Program> it=repo.findAll();
 
         it.forEach(programs::add);
         model.addAttribute("programs", programs);
-        return "programs";
+        return "main";
     }
 
     @GetMapping("/showPrograms/{id}")
@@ -38,4 +38,7 @@ public class GuiController {
         model.addAttribute("program",program.get());
         return "program";
     }
+
+
+
 }

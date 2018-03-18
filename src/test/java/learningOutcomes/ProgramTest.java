@@ -57,4 +57,20 @@ public class ProgramTest {
         program2.addCourse(course);
         Assert.assertTrue(program.equals(program2));
     }
+
+    @Test
+    public void testHasCourseWithId_CourseNotFound() {
+        Assert.assertFalse(program.hasCourseWithId(256));
+    }
+
+    @Test
+    public void testHasCourseWithId_CourseFound() {
+        int courseId = 1;
+        Course course = new Course();
+        course.setId(courseId);
+        program.addCourse(course);
+
+        Assert.assertTrue(program.hasCourseWithId(courseId));
+    }
+
 }

@@ -42,6 +42,9 @@ public class Program {
         return courses.get(index);
     }
     public List<Course> getCourses() { return courses; }
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
     public int getSize() { return courses.size(); }
 
     public void addCourse(Course c) {
@@ -73,7 +76,12 @@ public class Program {
         return true;
     }
 
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
+    public boolean hasCourseWithId(Integer id) {
+	    for (Course course: courses) {
+	        if (course.getId() == id) {
+	            return true;
+            }
+        }
+        return false;
     }
 }

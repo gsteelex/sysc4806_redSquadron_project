@@ -43,15 +43,24 @@ The project has been newly created with a healthcheck endpoint operational, unit
 
 To be completed this iteration (03/08/2018):
 * Define endpoints as a team :heavy_check_mark:
-* Commit initial UML diagram :pencil2:
+* Commit initial UML diagram :heavy_check_mark:
 * Create model objects for shared use and modification :heavy_check_mark:
 * Create Endpoints under "/programs" with unit and integration tests :heavy_check_mark:
 * Create Endpoints under "/courses" with unit and integration tests (create course & get courses) :heavy_check_mark:
-* Create Endpoints under "/categories" with unit and integration tests
-* Create UI page to list all programs with link to view a specific program (display some data, TA approved)
+* Create Endpoints under "/categories" with unit and integration tests :heavy_check_mark:
+* Create UI page to list all programs with link to view a specific program (display some data, TA approved) :heavy_check_mark:
 
-To be completed for next iteration (03/15/2018):
-* Create endpoints for courses (Garrett)
-* Create endpoints for learning outcomes
-* Create courses and programs through GUI
-* View courses, programs, categories, and learning outcomes on GUI
+To be completed for this iteration (03/15/2018):
+* Create endpoints for courses (Garrett) :heavy_check_mark:
+* Create endpoints for learning outcomes :pencil2:
+* Create courses and programs through GUI :pencil2:
+* View courses, programs on GUI :heavy_check_mark:
+* View categories, learning outcomes on GUI (should have been out of scope in retrospect)
+
+To be completed for next iteration (03/22/2018):
+* Create endpoints for learning outcomes :pencil2:
+* Create courses and programs through GUI :pencil2:
+* [View categories on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187266)
+* [Create category on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187283)
+* [View learning outcomes on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8031918)
+* [Create learning outcome on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187294)
