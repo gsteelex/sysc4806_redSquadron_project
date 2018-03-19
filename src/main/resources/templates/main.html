@@ -22,10 +22,8 @@
 </form>
 
 <h1>Programs</h1>
-<div id = "allPrograms">
-<div  th:each="program: ${programs}" >
-    <a href="#" th:href="'/showPrograms/' + ${program.id}"  th:text="${program.name}" />
-</div>
+<div>
+    <table id="allPrograms"></table>
 </div>
 
 <h1>Courses</h1>

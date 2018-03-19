@@ -2,12 +2,12 @@ var EMPTY_HTML = '';
 var ALL_COURSES_ID = '#allCourses';
 var COURSES_BASE_PATH = '/courses';
 
-var clearCourses = function() {
+var clearCourses = () => {
     $(ALL_COURSES_ID).html(EMPTY_HTML);
 };
 
 
-var displayCourse = function(course) {
+var displayCourse = (course) => {
     var learningOutcomes = course.learningOutcomes.map(outcome => outcome.name);
 
     //TODO: this will be revisited once the courses can have learning outcomes
@@ -21,23 +21,21 @@ var displayCourse = function(course) {
     $(ALL_COURSES_ID).find('tbody').append(courseDiv);
 };
 
-var displayCourseList = function() {
+var displayCourseList = () => {
     clearCourses();
 
-    $.get(COURSES_BASE_PATH, function (courseList) {
+    $.get(COURSES_BASE_PATH, (courseList) => {
         $(ALL_COURSES_ID).append($('<tr><th>Name</th><th>Year</th><th>Learning Outcomes</th></tr>'));
         courseList.forEach(displayCourse);
     });
 };
-var handleCreateCourseFormSubmission = function (e) {
+var handleCreateCourseFormSubmission = (e) => {
     e.preventDefault();
 
     var courseData = {};
-    var inputs = $('form#courseForm :input').serializeArray().forEach(function(input) {
+    var inputs = $('form#courseForm :input').serializeArray().forEach((input) => {
         courseData[input.name] = input.value;
     });
-
- 
 
     $.ajax({
         url:'/courses',
@@ -50,7 +48,7 @@ var handleCreateCourseFormSubmission = function (e) {
 };
 
 
-var setUp = function() {
+var setUp = () => {
     displayCourseList();
     $('#courseForm').submit(handleCreateCourseFormSubmission);
 };

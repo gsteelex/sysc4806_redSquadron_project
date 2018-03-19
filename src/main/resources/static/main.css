@@ -31,3 +31,7 @@ tr:nth-child(odd) {
 body {
     background: #dddddd;
 }
+
+:target {
+    background: #00bcd4 !important;
+}
