@@ -1,7 +1,8 @@
-
 var EMPTY_HTML = '';
 var ALL_PROGRAMS_ID = '#allPrograms';
+var CREATE_PROGRAM_COURSES_SELECT_ID = '#programCoursesSelect';
 var PROGRAMS_BASE_PATH = '/programs';
+var COURSES_BASE_PATH = '/courses';
 
 var clearPrograms = () => {
     $(ALL_PROGRAMS_ID).html(EMPTY_HTML);
@@ -10,9 +11,17 @@ var clearPrograms = () => {
 var handleCreateProgramFormSubmission = (e) => {
     e.preventDefault();
 
-    var programData = {};
+    var programData = {
+        courses:[]
+        };
     var inputs = $('form#programForm :input').serializeArray().forEach((input) => {
-        programData[input.name] = input.value;
+        if (input.name === 'name') {
+            programData[input.name] = input.value;
+        } else if (input.name = 'courses[]') {
+            programData['courses'].push(input.value);
+        }
+
+
     });
 
     $.ajax({
@@ -52,8 +61,22 @@ var displayProgramList = () => {
     });
 };
 
+var populateCoursesForProgramForm = () => {
+    //remove previous options
+    $(CREATE_PROGRAM_COURSES_SELECT_ID).html(EMPTY_HTML);
+
+    //get list of all courses
+     $.get(COURSES_BASE_PATH, (courses) => {
+            //append each course to the multi select when creating a course
+            courses.forEach((course) => {
+                $(CREATE_PROGRAM_COURSES_SELECT_ID).append('<option value="' + course.id + '">' + course.id + ': ' + course.name + '</option>');
+            });
+        });
+};
+
 var setUp = () => {
     displayProgramList();
+    populateCoursesForProgramForm();
     $('#programForm').submit(handleCreateProgramFormSubmission);
 };
 
