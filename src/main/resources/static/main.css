@@ -37,5 +37,12 @@ body {
 }
 
 option {
-        margin: 0px 8px 0px 8px;
+    margin: 0px 8px 0px 8px;
+}
+
+form {
+    margin: 16px;
+    border: 1px solid black;
+    padding: 8px;
+    width: 500px;
 }
