@@ -56,7 +56,7 @@ var showProgram = (program) => {
 var displayProgramList = () => {
     clearPrograms();
     $.get(PROGRAMS_BASE_PATH, (programs) => {
-        $(ALL_PROGRAMS_ID).append($('<tr><th>Name</th><th>Programs</th></tr>'));
+        $(ALL_PROGRAMS_ID).append($('<tr><th>Name</th><th>Courses</th></tr>'));
         programs.forEach(showProgram);
     });
 };
