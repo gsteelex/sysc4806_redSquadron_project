@@ -27,6 +27,8 @@ var displayCourseList = () => {
     $.get(COURSES_BASE_PATH, (courseList) => {
         $(ALL_COURSES_ID).append($('<tr><th>Name</th><th>Year</th><th>Learning Outcomes</th></tr>'));
         courseList.forEach(displayCourse);
+
+        populateCoursesForProgramForm();
     });
 };
 var handleCreateCourseFormSubmission = (e) => {

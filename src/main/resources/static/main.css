@@ -35,3 +35,7 @@ body {
 :target {
     background: #00bcd4 !important;
 }
+
+option {
+        margin: 0px 8px 0px 8px;
+}
