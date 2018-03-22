@@ -3,7 +3,7 @@ SYSC 4806 Project - Red Squadron Team
 
 [Health Check Link](https://sysc4806-red-squadron-project.herokuapp.com/healthCheck)
 
-[Heroku App Link](https://sysc4806-red-squadron-project.herokuapp.com/healthCheck)
+[Heroku App Link](https://sysc4806-red-squadron-project.herokuapp.com/)
 
 
 ## Summary
@@ -52,15 +52,14 @@ To be completed this iteration (03/08/2018):
 
 To be completed for this iteration (03/15/2018):
 * Create endpoints for courses (Garrett) :heavy_check_mark:
-* Create endpoints for learning outcomes :pencil2:
-* Create courses and programs through GUI :pencil2:
+* Create endpoints for learning outcomes :heavy_check_mark:
+* Create courses and programs through GUI :heavy_check_mark:
 * View courses, programs on GUI :heavy_check_mark:
-* View categories, learning outcomes on GUI (should have been out of scope in retrospect)
 
 To be completed for next iteration (03/22/2018):
 * Create endpoints for learning outcomes :pencil2:
-* Create courses and programs through GUI :pencil2:
-* [View categories on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187266)
-* [Create category on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187283)
+* Create courses and programs through GUI :heavy_check_mark:
+* [View categories on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187266) :pencil2:
+* [Create category on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187283) :heavy_check_mark:
 * [View learning outcomes on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8031918)
 * [Create learning outcome on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187294)
