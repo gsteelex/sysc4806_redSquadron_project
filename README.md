@@ -63,3 +63,7 @@ To be completed for next iteration (03/22/2018):
 * [Create category on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187283) :heavy_check_mark:
 * [View learning outcomes on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8031918)
 * [Create learning outcome on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187294)
+
+To be completed for next iteration (03/29/2018):
+* Finish everything we were too optimistic from last iteration
+* Delete courses and programs
