@@ -39,7 +39,7 @@ public class LearningOutcomePathAspect {
         }
     }
 
-    @Around("@annotation(LearningOutcomeExistsValidated) && args(id,loId, response,.. )")
+    @Around("@annotation(LearningOutcomeExistsValidated) && args(id,loId,response,.. )")
     public Object validateLearningOutcomeExists(ProceedingJoinPoint pjp, Integer id, Integer loId, HttpServletResponse response) throws Throwable {
 
         Optional<LearningOutcome> learningOutcome = loRepository.findById(loId);
@@ -48,7 +48,7 @@ public class LearningOutcomePathAspect {
             return pjp.proceed();
 
         } else {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "learning outcome not found with id: " + id);
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "learning outcome not found with id: " + loId);
             return null;
         }
     }

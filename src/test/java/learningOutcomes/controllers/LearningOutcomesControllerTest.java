@@ -73,23 +73,9 @@ public class LearningOutcomesControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-    @Test
-    public void testCreateLearningOutcome_CategoryNotFound() throws Exception {
-
-        MvcResult postResult = mockMvc.perform(
-                post(CATEGORY_BASE_PATH + "/" + category.getId() + LEARNING_OUTCOME_BASE_PATH)
-                        .contentType("application/json")
-                        .content("{\"name\": \"" + NAME + "\", \"category\": 431}")
-        )
-                .andDo(print())
-                .andExpect(status().isNotFound())
-                .andReturn();
-
-        assertEquals("could not find category with id: 431", postResult.getResponse().getErrorMessage());
-    }
 
     @Test
-    public void testCreateLearningOutcome_CategoryFound() throws Exception {
+    public void testCreateLearningOutcome_Success() throws Exception {
 
         mockMvc.perform(
                 post(CATEGORY_BASE_PATH + "/" + category.getId() + LEARNING_OUTCOME_BASE_PATH)
@@ -123,7 +109,7 @@ public class LearningOutcomesControllerTest {
                 .andExpect(jsonPath("$[0].id").exists())
                 .andExpect(jsonPath("$[0].id").isNumber())
                 .andExpect(jsonPath("$[0].name").exists())
-                .andExpect(jsonPath("$[0].name").value(NAME));
+                .andExpect(jsonPath("$[0].name").isString());
     }
 
     @Test
@@ -251,7 +237,7 @@ public class LearningOutcomesControllerTest {
         MvcResult result = mockMvc.perform(
                 patch(CATEGORY_BASE_PATH + "/" + category.getId() + LEARNING_OUTCOME_BASE_PATH + "/" + outcomeId)
                         .contentType("application/json")
-                        .content("{\"name\": \"" + UPDATED_NAME + "\", \"category\": [" + category2.getId() + "]}")
+                        .content("{\"name\": \"" + UPDATED_NAME + "\", \"category\": " + category2.getId() + "}")
         )
                 .andDo(print())
                 .andExpect(status().isForbidden())

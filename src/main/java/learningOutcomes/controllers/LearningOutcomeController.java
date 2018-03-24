@@ -90,18 +90,20 @@ public class LearningOutcomeController {
         LearningOutcome learningOutcomeToModify = learningOutcome.get();
         learningOutcomeToModify.setName(learningOutcomeRequest.getName());
 
-        if (learningOutcomeRequest.getCategory() != null) {
 
-            Optional<Category> category = categoryRepository.findById(categoryId);
+        if (learningOutcomeRequest.getCategory() != null) {
+            int requestCategory = learningOutcomeRequest.getCategory();
+
+            Optional<Category> category = categoryRepository.findById(requestCategory);
 
             if (category.isPresent()) {
-                if (!category.get().equals(learningOutcomeToModify.getCategory())) {
+                if (requestCategory != learningOutcomeToModify.getCategory().getId()) {
                     response.sendError(HttpServletResponse.SC_FORBIDDEN, "changing category field is not permitted");
                     return null;
                 }
 
             } else {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "could not find category with id: " + categoryId);
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "could not find category with id: " + requestCategory);
                 return null;
             }
         }

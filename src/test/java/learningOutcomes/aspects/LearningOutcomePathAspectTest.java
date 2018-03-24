@@ -63,7 +63,7 @@ public class LearningOutcomePathAspectTest {
 
     @Test
     public void testValidateLearningOutcomeExists_DoesNotExist() throws Throwable {
-        Object result = pathAspect.validateLearningOutcomeExists(mockPJP, 77326426, mockResponse);
+        Object result = pathAspect.validateLearningOutcomeExists(mockPJP, 0, 77326426, mockResponse);
 
         Mockito.verify(mockResponse).sendError(HttpServletResponse.SC_NOT_FOUND, "learning outcome not found with id: " + 77326426);
         assertNull(result);
@@ -74,7 +74,7 @@ public class LearningOutcomePathAspectTest {
         Object success = new Object();
         when(mockPJP.proceed()).thenReturn(success);
 
-        Object result = pathAspect.validateLearningOutcomeExists(mockPJP, learningOutcome.getId(), mockResponse);
+        Object result = pathAspect.validateLearningOutcomeExists(mockPJP, 0, learningOutcome.getId(), mockResponse);
 
         assertEquals(success, result);
     }
