@@ -29,7 +29,7 @@
     <h1>Create Learning Outcome</h1>
     <form id="outcomeForm" action="#" method="post">
         <p>Learning Outcome Name: <input type="text" name="name"/></p>
-        <p>Category List (single selectable): <select id="categorySelect" name="category[]"></select></p>
+        <p>Category List (single selectable): <select id="categorySelect" name="category"></select></p>
         <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
     </form>
 
@@ -37,6 +37,7 @@
     <form id = "courseForm" action="#" method="post">
         <p>Course Name: <input type="text" name="name" /></p>
         <p>Course Year:  <input type="number" name="year" /></p>
+        <p>Course List (multiple selectable): <select multiple="" id="outcomeSelect" name="outcomes[]"></select></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
 
