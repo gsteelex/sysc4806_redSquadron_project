@@ -32,6 +32,17 @@ public class GuiController {
         return "main";
     }
 
+
+    @GetMapping("/admin")
+    public String showAdminPage(Model model){
+        List<Program> programs =  new ArrayList<>();
+        Iterable<Program> it=repo.findAll();
+
+        it.forEach(programs::add);
+        model.addAttribute("programs", programs);
+        return "admin";
+    }
+
     @GetMapping("/showPrograms/{id}")
     public String showProgram(Model model, @PathVariable("id") Integer id){
         Optional<Program> program = repo.findById(id);
