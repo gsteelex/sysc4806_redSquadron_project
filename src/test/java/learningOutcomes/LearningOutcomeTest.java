@@ -13,28 +13,28 @@ public class LearningOutcomeTest {
     public void setUp() throws Exception {
         lo = new LearningOutcome();
         cat = new Category("TestCategory");
+        cat.setId(10);
     }
 
 	@Test
     public void setValuesTest() throws Exception {
 		lo.setId(1);
 		lo.setName("TestName");
-		lo.setCategory(cat);
+		lo.setCategory(cat.getId());
 		Assert.assertEquals((Integer) 1, lo.getId());
 		Assert.assertEquals("TestName", lo.getName());
-		Assert.assertEquals("TestCategory", lo.getCategory().getName());
+		Assert.assertEquals(cat.getId(), lo.getCategory());
 	}
 
 	@Test
 	public void equalsTest() throws Exception {
     	LearningOutcome lo2 = new LearningOutcome();
-    	Category cat2 = new Category("TestCategory");
     	lo2.setId(1);
-    	lo2.setCategory(cat2);
+    	lo2.setCategory(cat.getId());
     	lo2.setName("TestName");
     	lo.setId(1);
     	lo.setName("TestName");
-    	lo.setCategory(cat);
+    	lo.setCategory(cat.getId());
 		Assert.assertEquals(true, lo2.equals(lo));
 	}
 }
