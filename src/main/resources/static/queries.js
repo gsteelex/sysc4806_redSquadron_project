@@ -31,29 +31,27 @@ var populateCourseToQueryList = () => {
 
 var queryCoursesInProgramYear = () => {
     var programYear = +$(PROGRAM_YEAR_ID).val();    //auto converts to a number when adding the "+" sign
-    var programId =+$(PROGRAM_SELECT_ID).val();       //auto converts to a number when adding the "+" sign
+    var programId = +$(PROGRAM_SELECT_ID).val();       //auto converts to a number when adding the "+" sign
     var tableHeadings = ['Program', 'Program ID', 'Year', 'Course', 'Learning Outcomes'];
 
-    $.get(PROGRAMS_BASE_PATH, (programs) => {
+    $.get(PROGRAMS_BASE_PATH + '/' + programId, (program) => {
         var programsInYear = [];
 
-        programs.forEach((program) => {
-            program.courses.forEach((course) => {
 
-                //if the course is from the corresponding project year it needs to be displayed
-                if (course.year === programYear) {
-                    //get data of course
-                    var data = [];
-                    data.push(program.name);
-                    data.push(program.id);
-                    data.push(course.year);
-                    data.push(course.name);
-                    data.push(JSON.stringify(course.learningOutcomes)); //TODO: maybe make this look nicer later
+        program.courses.forEach((course) => {
+            //if the course is from the corresponding project year it needs to be displayed
+            if (course.year === programYear) {
+                //get data of course
+                var data = [];
+                data.push(program.name);
+                data.push(program.id);
+                data.push(course.year);
+                data.push(course.name);
+                data.push(JSON.stringify(course.learningOutcomes)); //TODO: maybe make this look nicer later
 
-                    //add to list of courses
-                    programsInYear.push(data);
-                }
-            });
+                //add to list of courses
+                programsInYear.push(data);
+            }
         });
 
         displayTable(tableHeadings, programsInYear);
@@ -63,33 +61,31 @@ var queryCoursesInProgramYear = () => {
 var queryLearningOutcomesOfProgramYear = () => {
 
     var programYear = +$(PROGRAM_YEAR_ID).val();    //auto converts to a number when adding the "+" sign
-        var programId =+$(PROGRAM_SELECT_ID).val();       //auto converts to a number when adding the "+" sign
+        var programId = +$(PROGRAM_SELECT_ID).val();       //auto converts to a number when adding the "+" sign
         var tableHeadings = ['Program', 'Program ID', 'Year', 'Learning Outcome', 'Learning Outcome ID', 'Category ID'];
 
-        $.get(PROGRAMS_BASE_PATH, (programs) => {
+        $.get(PROGRAMS_BASE_PATH + '/' + programId, (program) => {
             var learningOutcomesInYear = [];
 
-            programs.forEach((program) => {
-                program.courses.forEach((course) => {
+            program.courses.forEach((course) => {
 
-                    //if the course is from the corresponding project year it needs to be displayed
-                    if (course.year === programYear) {
+                //if the course is from the corresponding project year it needs to be displayed
+                if (course.year === programYear) {
 
-                        course.learningOutcomes.forEach((outcome) => {
-                            //get data of learning outcome
-                            var data = [];
-                             data.push(program.name);
-                             data.push(program.id);
-                             data.push(course.year);
-                             data.push(outcome.name);
-                             data.push(outcome.id);
-                             data.push(outcome.category);
+                    course.learningOutcomes.forEach((outcome) => {
+                        //get data of learning outcome
+                        var data = [];
+                        data.push(program.name);
+                        data.push(program.id);
+                        data.push(course.year);
+                        data.push(outcome.name);
+                        data.push(outcome.id);
+                        data.push(outcome.category);
 
-                             //add to list of courses
-                             learningOutcomesInYear.push(data);
-                        });
-                    }
-                });
+                        //add to list of courses
+                        learningOutcomesInYear.push(data);
+                    });
+                }
             });
 
             displayTable(tableHeadings, learningOutcomesInYear);
@@ -98,8 +94,45 @@ var queryLearningOutcomesOfProgramYear = () => {
 
 
 var queryCoursesOfCategory = () => {
-    console.log('to be implemented 3');
-    //TODO
+    //internally scoped function to check if the course in question has a learning outcome of desired category
+    var doesCourseHaveCategory = (course, categoryId) => {
+        var found = false;
+
+        course.learningOutcomes.forEach((outcome) => {
+            if (outcome.category === categoryId) {
+                found = true;
+            }
+        })
+
+        return found;
+    };
+
+    var programYear = +$(PROGRAM_YEAR_ID).val();        //auto converts to a number when adding the "+" sign
+    var programId = +$(PROGRAM_SELECT_ID).val();        //auto converts to a number when adding the "+" sign
+    var categoryId = +$(CATEGORY_SELECT_ID).val();      //auto converts to a number when adding the "+" sign
+    var tableHeadings = ['Program', 'Program ID', 'Year', 'Category ID', 'Course', 'Course ID'];
+
+    //get details under specific program
+    $.get(PROGRAMS_BASE_PATH + '/' + programId, (program) => {
+        var coursesWithCategory = [];
+
+        program.courses.forEach((course) => {
+            if (course.year === programYear && doesCourseHaveCategory(course, categoryId) === true) {
+                var data = [];
+
+                data.push(program.name);
+                data.push(program.id);
+                data.push(course.year);
+                data.push(categoryId);
+                data.push(course.name);
+                data.push(course.id);
+
+                coursesWithCategory.push(data);
+            }
+        });
+
+        displayTable(tableHeadings, coursesWithCategory);
+    });
 };
 
 //data is a 2d array, rows and items desired in each table column corresponding to the row
@@ -134,7 +167,7 @@ var setUp = () => {
 
     $('#coursesInProgramYear').click(queryCoursesInProgramYear);
     $('#listLearningOutcomesOfProgramYear').click(queryLearningOutcomesOfProgramYear);
-    $('#listCourseOfCategory').click(queryCoursesInProgramYear);
+    $('#listCourseOfCategory').click(queryCoursesOfCategory);
 };
 
 $(setUp);
