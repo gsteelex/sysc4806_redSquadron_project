@@ -1,6 +1,7 @@
 var EMPTY_HTML = '';
 var ALL_COURSES_ID = '#allCourses';
 var COURSES_BASE_PATH = '/courses';
+var DELETE_COURSE_SELECT_ID = '#deleteCourseSelect';
 
 var clearCourses = () => {
     $(ALL_COURSES_ID).html(EMPTY_HTML);
@@ -45,14 +46,48 @@ var handleCreateCourseFormSubmission = (e) => {
         data: JSON.stringify(courseData),
         contentType:'application/json',
         dataType:"json",
-        success: displayCourseList
+        success: () => {
+            displayCourseList();
+            populateDeleteCourseForm();
+        }
     });
 };
 
+var populateDeleteCourseForm = () => {
+    $(DELETE_COURSE_SELECT_ID).html(EMPTY_HTML);
+
+    $.get(COURSES_BASE_PATH, (courses) => {
+        courses.forEach((course) => {
+            $(DELETE_COURSE_SELECT_ID).append('<option value="' + course.id + '">' + course.id + ': ' + course.name + '</option>');
+        });
+    });
+};
+
+var handleDeleteCourseFormSubmission = (e) => {
+    e.preventDefault();
+
+    var id = $(DELETE_COURSE_SELECT_ID).val();
+
+    $.ajax({
+        url:COURSES_BASE_PATH + '/' + id,
+        type:'DELETE',
+        contentType:'application/json',
+        dataType:"json",
+        success: () => {
+            displayCourseList();
+            populateDeleteCourseForm();
+        },
+        error: (errorResult) => {
+            alert("Could not delete course: " + errorResult.responseJSON.message);
+        }
+    });
+};
 
 var setUp = () => {
     displayCourseList();
+    populateDeleteCourseForm();
     $('#courseForm').submit(handleCreateCourseFormSubmission);
+    $('#deleteCourseForm').submit(handleDeleteCourseFormSubmission);
 };
 
 
