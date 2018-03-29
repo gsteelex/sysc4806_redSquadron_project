@@ -92,10 +92,10 @@ var populateDeleteProgramForm = () => {
 var handleDeleteProgramFormSubmission = (e) => {
     e.preventDefault();
 
-    var id = $('#deleteProgramSelect').val();
+    var id = $(DELETE_PROGRAMS_SELECT_ID).val();
 
     $.ajax({
-        url:'/programs/' + id,
+        url:PROGRAMS_BASE_PATH + '/' + id,
         type:'DELETE',
         contentType:'application/json',
         dataType:"json",
