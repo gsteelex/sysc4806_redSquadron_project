@@ -93,6 +93,9 @@ public class LearningOutcomesControllerTest {
 
     @Test
     public void testGetAllLearningOutcomes() throws Exception {
+        Category category = new Category();
+        categoryRepository.save(category);
+
         mockMvc.perform(
                 post(CATEGORY_BASE_PATH + "/" + category.getId() + LEARNING_OUTCOME_BASE_PATH)
                         .contentType("application/json")
@@ -110,6 +113,26 @@ public class LearningOutcomesControllerTest {
                 .andExpect(jsonPath("$[0].id").isNumber())
                 .andExpect(jsonPath("$[0].name").exists())
                 .andExpect(jsonPath("$[0].name").isString());
+    }
+
+    @Test
+    public void testGetAllLearningOutcomes_NoneFoundForCategory() throws Exception {
+        Category category = new Category();
+        categoryRepository.save(category);
+
+        mockMvc.perform(
+                post(CATEGORY_BASE_PATH + "/" + category.getId() + LEARNING_OUTCOME_BASE_PATH)
+                        .contentType("application/json")
+                        .content("{\"name\": \"" + NAME + "\", \"category\": " + category.getId() + "}")
+        )
+                .andDo(print());
+
+        mockMvc.perform(
+                get(CATEGORY_BASE_PATH + "/" + 84848 + LEARNING_OUTCOME_BASE_PATH)
+        )
+                .andDo(print())
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$").isEmpty());
     }
 
     @Test
