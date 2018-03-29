@@ -13,7 +13,7 @@ var showLearningOutcome = (lo) => {
         categoryData.append($('<a href="#category' + cat.id + '">' + cat.name + '</a>'));
     });
 
-    var learningOutcomeDiv = $('<tr id="learning outcome' + lo.id + '">' +
+    var learningOutcomeDiv = $('<tr id="outcome' + lo.id + '">' +
         '<td>' + lo.name + '</td>' +
         '</tr>'
     );
