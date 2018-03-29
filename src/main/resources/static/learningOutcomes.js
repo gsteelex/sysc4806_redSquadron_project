@@ -18,7 +18,6 @@ var handleCreateOutcomeFormSubmission = (e) => {
 
     });
 
-    console.log('Category id ' + id);
     $.ajax({
         url:'/categories/' + id + '/learningOutcomes',
         type:'POST',
