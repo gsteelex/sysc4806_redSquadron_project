@@ -161,6 +161,87 @@ var displayTable = (headerArray, data) => {
     });
 };
 
+
+var queryCategoriesOfProgramYear = () => {
+    var programYear = +$(PROGRAM_YEAR_ID).val();        //auto converts to a number when adding the "+" sign
+    var programId = +$(PROGRAM_SELECT_ID).val();        //auto converts to a number when adding the "+" sign
+    var tableHeadings = ['Program', 'Program ID', 'Year', 'Category', 'Category ID'];
+
+
+    //get details under specific program
+        $.get(PROGRAMS_BASE_PATH + '/' + programId, (program) => {
+            var categoriesOfYear = [];
+
+            program.courses.forEach((course) => {
+                course.learningOutcomes.forEach((outcome) => {
+                    // check if the category has already been counted
+                    if ($.inArray(outcome.category, categoriesOfYear) < 0) {
+                        categoriesOfYear.push(outcome.category);
+                    }
+                });
+            });
+
+            $.get(CATEGORY_BASE_PATH, (categories) => {
+                var categoryList = [];
+
+                categories.forEach((category) => {
+                    if ($.inArray(category.id, categoriesOfYear) >= 0) {
+                        var data = [];
+
+                        data.push(program.name);
+                        data.push(program.id);
+                        data.push(programYear);
+                        data.push(category.name);
+                        data.push(category.id);
+
+                        categoryList.push(data);
+                    }
+                });
+
+                displayTable(tableHeadings, categoryList);
+            });
+        });
+};
+
+var queryLearningOutcomesOfCategoryInProgramYear = () => {
+    var programYear = +$(PROGRAM_YEAR_ID).val();    //auto converts to a number when adding the "+" sign
+    var programId = +$(PROGRAM_SELECT_ID).val();       //auto converts to a number when adding the "+" sign
+    var categoryId = +$(CATEGORY_SELECT_ID).val();      //auto converts to a number when adding the "+" sign
+
+    var tableHeadings = ['Program', 'Program ID', 'Year', 'Learning Outcome', 'Learning Outcome ID', 'Category ID'];
+
+    $.get(PROGRAMS_BASE_PATH + '/' + programId, (program) => {
+        var learningOutcomesInYear = [];
+
+        program.courses.forEach((course) => {
+
+            //if the course is from the corresponding project year it needs to be displayed
+            if (course.year === programYear) {
+
+                course.learningOutcomes.forEach((outcome) => {
+
+                    if (outcome.category === categoryId) {
+                        //get data of learning outcome
+                        var data = [];
+                        data.push(program.name);
+                        data.push(program.id);
+                        data.push(course.year);
+                        data.push(outcome.name);
+                        data.push(outcome.id);
+                        data.push(outcome.category);
+
+                        //add to list of courses
+                        learningOutcomesInYear.push(data);
+                    }
+                });
+            }
+        });
+
+        displayTable(tableHeadings, learningOutcomesInYear);
+    });
+};
+
+
 var setUp = () => {
     populateProgramToQueryList();
     populateCourseToQueryList();
@@ -168,6 +249,11 @@ var setUp = () => {
     $('#coursesInProgramYear').click(queryCoursesInProgramYear);
     $('#listLearningOutcomesOfProgramYear').click(queryLearningOutcomesOfProgramYear);
     $('#listCourseOfCategory').click(queryCoursesOfCategory);
+
+    $('#categoriesOfProgramYear').click(queryCategoriesOfProgramYear);
+    $('#learningOutcomesOfCategoryInProgramYear').click(queryLearningOutcomesOfCategoryInProgramYear);
+
+    //TODO: learning outcomes of given course
 };
 
 $(setUp);
