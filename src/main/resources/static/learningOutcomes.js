@@ -1,6 +1,36 @@
 var EMPTY_HTML = '';
+var ALL_LEARNING_OUTCOMES_ID = '#allLearningOutcomes';
 var CREATE_OUTCOME_CATEGORY_SELECT_ID = '#categorySelect';
 var CATEGORY_BASE_PATH = '/categories';
+
+var clearLearningOutcomes = () => {
+    $(ALL_LEARNING_OUTCOMES_ID).html(EMPTY_HTML);
+};
+
+var showLearningOutcome = (lo) => {
+    var categoryData = $('<td></td>');
+    $.get(CATEGORY_BASE_PATH + '/' + lo.category, (cat) => {
+        categoryData.append($('<a href="#category' + cat.id + '">' + cat.name + '</a>'));
+    });
+
+    var learningOutcomeDiv = $('<tr id="learning outcome' + lo.id + '">' +
+        '<td>' + lo.name + '</td>' +
+        '</tr>'
+    );
+    learningOutcomeDiv.append(categoryData);
+
+    $(ALL_LEARNING_OUTCOMES_ID).find('tbody').append(learningOutcomeDiv);
+};
+
+var displayLearningOutcomeList = () => {
+    clearLearningOutcomes();
+    $.get(CATEGORY_BASE_PATH, (categories) => {
+        $(ALL_LEARNING_OUTCOMES_ID).append($('<tr><th>Name</th><th>Category</th></tr>'));
+        categories.forEach((category) => {
+            category.learningOutcomes.forEach((outcome) => {showLearningOutcome(outcome);});
+        });
+    });
+};
 
 var handleCreateOutcomeFormSubmission = (e) => {
     e.preventDefault();
@@ -24,7 +54,9 @@ var handleCreateOutcomeFormSubmission = (e) => {
         data: JSON.stringify(outcomeData),
         contentType:'application/json',
         dataType:"json",
-
+        success: () => {
+            displayLearningOutcomeList();
+        }
     });
 };
 
@@ -32,9 +64,9 @@ var populateCategoriesForOutcomeForm = () => {
     //remove previous options
     $(CREATE_OUTCOME_CATEGORY_SELECT_ID).html(EMPTY_HTML);
 
-    //get list of all courses
+    //get list of all categories
     $.get(CATEGORY_BASE_PATH, (categories) => {
-        //append each course to the multi select when creating a course
+        //append each category to the select when creating a learningOutcome
         categories.forEach((category) => {
             $(CREATE_OUTCOME_CATEGORY_SELECT_ID).append('<option value="' + category.id + '">' + category.id + ': ' + category.name + '</option>');
         });
@@ -46,8 +78,8 @@ var populateCategoriesForOutcomeForm = () => {
 
 
 
-
 var setUp = () => {
+    displayLearningOutcomeList();
     populateCategoriesForOutcomeForm();
     $('#outcomeForm').submit(handleCreateOutcomeFormSubmission);
 };
