@@ -46,3 +46,7 @@ form {
     padding: 8px;
     width: 500px;
 }
+
+.hidden {
+    display: none;
+}

@@ -9,35 +9,58 @@
     <script src="/courses.js"></script>
     <script src="/categories.js"></script>
     <script src="/learningOutcomes.js"></script>
+    <script src="/mode.js"></script>
 </head>
 <body>
 
-<h1>Create Category</h1>
-<form id = "categoryForm" action="#" method="post">
-    <p>Category Name: <input type="text" name="name" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-</form>
+<h1>Select Mode</h1>
+<input id="createMode" type="radio" name="mode" value="create" checked />
+<label for="createMode">Create</label>
+<input id="deleteMode" type="radio" name="mode" value="delete" />
+<label for="deleteMode">Delete</label>
 
-<h1>Create Learning Outcome</h1>
-<form id="outcomeForm" action="#" method="post">
-    <p>Learning Outcome Name: <input type="text" name="name"/></p>
-    <p>Category List (single selectable): <select id="categorySelect" name="category[]"></select></p>
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
-</form>
+<div id="create">
+    <h1>Create Category</h1>
+    <form id = "categoryForm" action="#" method="post">
+        <p>Category Name: <input type="text" name="name" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
 
-<h1>Create Course</h1>
-<form id = "courseForm" action="#" method="post">
-    <p>Course Name: <input type="text" name="name" /></p>
-    <p>Course Year:  <input type="number" name="year" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-</form>
+    <h1>Create Learning Outcome</h1>
+    <form id="outcomeForm" action="#" method="post">
+        <p>Learning Outcome Name: <input type="text" name="name"/></p>
+        <p>Category List (single selectable): <select id="categorySelect" name="category[]"></select></p>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </form>
 
-<h1>Create Program</h1>
-<form id="programForm" action="#" method="post">
-    <p>Program Name: <input type="text" name="name"/></p>
-    <p>Course List (multiple selectable): <select multiple="" id="programCoursesSelect" name="courses[]"></select></p>
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
-</form>
+    <h1>Create Course</h1>
+    <form id = "courseForm" action="#" method="post">
+        <p>Course Name: <input type="text" name="name" /></p>
+        <p>Course Year:  <input type="number" name="year" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+    <h1>Create Program</h1>
+    <form id="programForm" action="#" method="post">
+        <p>Program Name: <input type="text" name="name"/></p>
+        <p>Course List (multiple selectable): <select multiple="" id="programCoursesSelect" name="courses[]"></select></p>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </form>
+</div>
+
+<div id="delete" class="hidden">
+    <h1>Delete Program</h1>
+    <form id="deleteProgramForm" action="#">
+        <p>Program To Delete: <select id="deleteProgramSelect" name="id"></select></p>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </form>
+
+    <h1>Delete Course</h1>
+    <form id="deleteCourseForm" action="#">
+        <p>Course To Delete: <select id="deleteCourseSelect" name="id"></select></p>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </form>
+</div>
 
 <h1>Programs</h1>
 <div>
