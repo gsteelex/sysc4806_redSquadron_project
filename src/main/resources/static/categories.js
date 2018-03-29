@@ -15,7 +15,9 @@ var handleCreateCategoryFormSubmission = (e) => {
         data: JSON.stringify(categoryData),
         contentType:'application/json',
         dataType:"json",
-        success: (result) => {console.log(result)}
+        success: (result) => {console.log(result);
+            populateCategoriesForOutcomeForm();
+        }
     });
 };
 
