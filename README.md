@@ -30,7 +30,7 @@ Base URL: [https://sysc4806-red-squadron-project.herokuapp.com](https://sysc4806
 |PATCH	|	/categories/id	|
 |DELETE	|	/categories/id	|
 |GET	|	/categories/id/learningOutcomes	|
-|POST	|	/categories/id/learningOutcome	|
+|POST	|	/categories/id/learningOutcomes	|
 |GET	|	/categories/id/learningOutcomes/id	|
 |PATCH	|	/categories/id/learningOutcomes/id	|
 |DELETE	|	/categories/id/learningOutcomes/id	|
