@@ -34,7 +34,7 @@ public class LearningOutcomeController {
         List<LearningOutcome> learningOutcomes = new ArrayList<>();
 
         for (LearningOutcome outcome: allLearningOutcomes) {
-            if (outcome.getCategory() != null && categoryId.equals(outcome.getCategory().getId())) {
+            if (outcome.getCategory() != null && categoryId.equals(outcome.getCategory())) {
                 learningOutcomes.add(outcome);
             }
         }
