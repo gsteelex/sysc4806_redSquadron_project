@@ -1,6 +1,7 @@
 var EMPTY_HTML = '';
 var ALL_PROGRAMS_ID = '#allPrograms';
 var CREATE_PROGRAM_COURSES_SELECT_ID = '#programCoursesSelect';
+var DELETE_PROGRAMS_SELECT_ID = '#deleteProgramSelect';
 var PROGRAMS_BASE_PATH = '/programs';
 var COURSES_BASE_PATH = '/courses';
 
@@ -30,7 +31,10 @@ var handleCreateProgramFormSubmission = (e) => {
         data: JSON.stringify(programData),
         contentType:'application/json',
         dataType:"json",
-        success: displayProgramList
+        success: () => {
+            displayProgramList();
+            populateDeleteProgramForm();
+        }
     });
 };
 
@@ -74,10 +78,40 @@ var populateCoursesForProgramForm = () => {
         });
 };
 
+var populateDeleteProgramForm = () => {
+
+    $(DELETE_PROGRAMS_SELECT_ID).html(EMPTY_HTML);
+
+    $.get(PROGRAMS_BASE_PATH, (programs) => {
+        programs.forEach((program) => {
+            $(DELETE_PROGRAMS_SELECT_ID).append('<option value="' + program.id + '">' + program.id + ': ' + program.name + '</option>');
+        });
+    });
+};
+
+var handleDeleteProgramFormSubmission = (e) => {
+    e.preventDefault();
+
+    var id = $('#deleteProgramSelect').val();
+
+    $.ajax({
+        url:'/programs/' + id,
+        type:'DELETE',
+        contentType:'application/json',
+        dataType:"json",
+        success: () => {
+            displayProgramList();
+            populateDeleteProgramForm();
+        }
+    });
+};
+
 var setUp = () => {
     displayProgramList();
     populateCoursesForProgramForm();
+    populateDeleteProgramForm();
     $('#programForm').submit(handleCreateProgramFormSubmission);
+    $('#deleteProgramForm').submit(handleDeleteProgramFormSubmission);
 };
 
 
