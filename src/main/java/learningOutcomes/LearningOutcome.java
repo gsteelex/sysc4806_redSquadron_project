@@ -10,14 +10,13 @@ public class LearningOutcome {
     private Integer id = null;
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Category category;
+    private Integer category;
 
     public LearningOutcome() {
         this("Default", null);
     }
 
-    public LearningOutcome(String n, Category c) {
+    public LearningOutcome(String n, Integer c) {
         name = n;
         category = c;
     }
@@ -34,9 +33,9 @@ public class LearningOutcome {
         this.name = name;
     }
 
-    public Category getCategory() { return category; }
+    public Integer getCategory() { return category; }
 
-    public void setCategory(Category category) { this.category = category; }
+    public void setCategory(Integer category) { this.category = category; }
 
     @Override
     public boolean equals(Object o) {

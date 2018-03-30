@@ -34,7 +34,7 @@ public class LearningOutcomeController {
         List<LearningOutcome> learningOutcomes = new ArrayList<>();
 
         for (LearningOutcome outcome: allLearningOutcomes) {
-            if (outcome.getCategory() != null && categoryId.equals(outcome.getCategory().getId())) {
+            if (outcome.getCategory() != null && categoryId.equals(outcome.getCategory())) {
                 learningOutcomes.add(outcome);
             }
         }
@@ -54,7 +54,11 @@ public class LearningOutcomeController {
             Optional<Category> category = categoryRepository.findById(categoryId);
 
             if (category.isPresent()) {
-                learningOutcome.setCategory(category.get());
+                learningOutcome.setCategory(category.get().getId());
+                learningOutcomeRepository.save(learningOutcome);
+                Category categoryToUpdate = category.get();
+                categoryToUpdate.addLearningOutcome(learningOutcome);
+                categoryRepository.save(categoryToUpdate);
 
             } else {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "could not find category with id: " + categoryId);
@@ -62,7 +66,7 @@ public class LearningOutcomeController {
             }
         }
 
-        learningOutcomeRepository.save(learningOutcome);
+
 
         return learningOutcome;
     }
@@ -81,6 +85,9 @@ public class LearningOutcomeController {
 
         if (learningOutcome.isPresent() && category.isPresent()) {
             LearningOutcome learningOutcomeToReturn = learningOutcome.get();
+            Category removeFrom = category.get();
+            removeFrom.removeLearningOutcome(learningOutcomeToReturn);
+            categoryRepository.save(removeFrom);
             learningOutcomeRepository.delete(learningOutcome.get());
             return learningOutcomeToReturn;
 
@@ -106,7 +113,7 @@ public class LearningOutcomeController {
             Optional<Category> category = categoryRepository.findById(requestCategory);
 
             if (category.isPresent()) {
-                if (requestCategory != learningOutcomeToModify.getCategory().getId()) {
+                if (requestCategory != learningOutcomeToModify.getCategory()) {
                     response.sendError(HttpServletResponse.SC_FORBIDDEN, "changing category field is not permitted");
                     return null;
                 }
