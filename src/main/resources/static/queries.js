@@ -1,6 +1,7 @@
 var EMPTY_HTML = '';
 var PROGRAM_SELECT_ID = '#programSelect';
 var CATEGORY_SELECT_ID = '#categorySelect';
+var COURSE_SELECT_ID = '#courseSelect';
 var PROGRAM_YEAR_ID = '#programYear';
 var QUERY_RESULT_TABLE = '#queryResult';
 
@@ -16,15 +17,28 @@ var populateProgramToQueryList = () => {
         programs.forEach((program) => {
             $(PROGRAM_SELECT_ID).append($('<option value="' + program.id + '">' + program.id + ': ' + program.name + '</option>'));
         });
+
+        populateCourseToQueryList();
     });
 };
 
-var populateCourseToQueryList = () => {
+var populateCategoryToQueryList = () => {
     $(CATEGORY_SELECT_ID).html(EMPTY_HTML);
 
     $.get(CATEGORY_BASE_PATH, (categories) => {
         categories.forEach((category) => {
             $(CATEGORY_SELECT_ID).append($('<option value="' + category.id + '">' + category.id + ': ' + category.name + '</option>'));
+        });
+    });
+};
+
+var populateCourseToQueryList = () => {
+    $(COURSE_SELECT_ID).html(EMPTY_HTML);
+
+    var programId = +$(PROGRAM_SELECT_ID).val();       //auto converts to a number when adding the "+" sign
+    $.get(PROGRAMS_BASE_PATH + '/' + programId, (program) => {
+        program.courses.forEach((course) => {
+            $(COURSE_SELECT_ID).append($('<option value="' + course.id + '">' + course.id + ': ' + course.name + '</option>'));
         });
     });
 };
@@ -47,7 +61,10 @@ var queryCoursesInProgramYear = () => {
                 data.push(program.id);
                 data.push(course.year);
                 data.push(course.name);
-                data.push(JSON.stringify(course.learningOutcomes)); //TODO: maybe make this look nicer later
+
+                var learningOutcomes = course.learningOutcomes.map(outcome => outcome.name);
+
+                data.push(learningOutcomes.join('; '));
 
                 //add to list of courses
                 programsInYear.push(data);
@@ -137,9 +154,6 @@ var queryCoursesOfCategory = () => {
 
 //data is a 2d array, rows and items desired in each table column corresponding to the row
 var displayTable = (headerArray, data) => {
-    console.log(headerArray);   //TODO: remove before PR
-    console.log(data);          //TODO: remove before PR
-
     $(QUERY_RESULT_TABLE).html(EMPTY_HTML);
 
     //create and append header
@@ -158,6 +172,16 @@ var displayTable = (headerArray, data) => {
         });
 
         $(QUERY_RESULT_TABLE).find('tbody').append(tr);
+
+        var csvData = headerArray.join();
+        data.forEach((row) => {
+            csvData += '\n' + row.join();
+        });
+
+        //create export button
+        var exportButton = $('<button><a download="table.csv" href="data:text/csv;charset=UTF-8,' + encodeURIComponent(csvData) + '">Download Table as CSV</a></button>');
+        $('#export').html(EMPTY_HTML);
+        $('#export').append(exportButton);
     });
 };
 
@@ -242,9 +266,36 @@ var queryLearningOutcomesOfCategoryInProgramYear = () => {
 };
 
 
+var queryLearningOutcomesOfCourseInGivenProgramYear = () => {
+    var programId = +$(PROGRAM_SELECT_ID).val();        //auto converts to a number when adding the "+" sign
+    var courseId = +$(COURSE_SELECT_ID).val();          //auto converts to a number when adding the "+" sign
+    var tableHeadings = ['Program ID', 'Year', 'Course', 'Course ID', 'Learning Outcome', 'Learning Outcome ID'];
+
+    $.get(COURSES_BASE_PATH + '/' + courseId, (course) => {
+        var learningOutcomesInCourse = [];
+
+        course.learningOutcomes.forEach((outcome) => {
+            var data = [];
+            data.push(programId);
+            data.push(course.year);
+            data.push(course.name);
+            data.push(course.id);
+            data.push(outcome.name);
+            data.push(outcome.id);
+
+            learningOutcomesInCourse.push(data);
+        });
+
+        displayTable(tableHeadings, learningOutcomesInCourse);
+    });
+};
+
+
 var setUp = () => {
     populateProgramToQueryList();
-    populateCourseToQueryList();
+    populateCategoryToQueryList();
+
+    $(PROGRAM_SELECT_ID).change(populateCourseToQueryList);
 
     $('#coursesInProgramYear').click(queryCoursesInProgramYear);
     $('#listLearningOutcomesOfProgramYear').click(queryLearningOutcomesOfProgramYear);
@@ -252,8 +303,7 @@ var setUp = () => {
 
     $('#categoriesOfProgramYear').click(queryCategoriesOfProgramYear);
     $('#learningOutcomesOfCategoryInProgramYear').click(queryLearningOutcomesOfCategoryInProgramYear);
-
-    //TODO: learning outcomes of given course
+    $('#learningOutcomesOfCourseInGivenProgramYear').click(queryLearningOutcomesOfCourseInGivenProgramYear);
 };
 
 $(setUp);
