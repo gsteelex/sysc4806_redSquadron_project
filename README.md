@@ -57,13 +57,24 @@ To be completed for this iteration (03/15/2018):
 * View courses, programs on GUI :heavy_check_mark:
 
 To be completed for next iteration (03/22/2018):
-* Create endpoints for learning outcomes :pencil2:
+* Create endpoints for learning outcomes :heavy_check_mark:
 * Create courses and programs through GUI :heavy_check_mark:
 * [View categories on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187266) :pencil2:
 * [Create category on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187283) :heavy_check_mark:
-* [View learning outcomes on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8031918)
-* [Create learning outcome on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187294)
+* [View learning outcomes on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8031918) :pencil2:
+* [Create learning outcome on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187294) :pencil2:
 
 To be completed for next iteration (03/29/2018):
-* Finish everything we were too optimistic from last iteration
-* Delete courses and programs
+* Finish everything we were too optimistic from last iteration :pencil2:
+* Delete courses and programs :heavy_check_mark:
+
+To be completed for next iteration (04/04/2018):
+* Finish items from pervious iteration :pencil2:
+* Updates via GUI:
+    * https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8555006
+    * https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8555003
+    * https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8554996
+    * https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8554989
+* [GUI: Delete Category and Learning Outcome](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8554954)
+* [Course Learning Outcome links to Learning Outcome Table](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8031911)
+* [Additional Queries Required](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8560453) :pencil2:
