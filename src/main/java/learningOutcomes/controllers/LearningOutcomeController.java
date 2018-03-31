@@ -29,8 +29,17 @@ public class LearningOutcomeController {
 
     @RequestMapping(value="/{categoryId}/learningOutcomes", method=RequestMethod.GET)
     public Iterable<LearningOutcome> getAllLearningOutcomes(@PathVariable("categoryId") Integer categoryId) {
-        return learningOutcomeRepository.findAll();
 
+        Iterable<LearningOutcome> allLearningOutcomes = learningOutcomeRepository.findAll();
+        List<LearningOutcome> learningOutcomes = new ArrayList<>();
+
+        for (LearningOutcome outcome: allLearningOutcomes) {
+            if (outcome.getCategory() != null && categoryId.equals(outcome.getCategory())) {
+                learningOutcomes.add(outcome);
+            }
+        }
+
+        return learningOutcomes;
     }
 
     @LearningOutcomeRequestValidated
