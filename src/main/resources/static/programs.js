@@ -18,7 +18,7 @@ var handleCreateProgramFormSubmission = (e) => {
     var inputs = $('form#programForm :input').serializeArray().forEach((input) => {
         if (input.name === 'name') {
             programData[input.name] = input.value;
-        } else if (input.name = 'courses[]') {
+        } else if (input.name === 'courses[]') {
             programData['courses'].push(input.value);
         }
 

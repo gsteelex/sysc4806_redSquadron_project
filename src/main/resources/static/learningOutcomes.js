@@ -11,7 +11,7 @@ var handleCreateOutcomeFormSubmission = (e) => {
     var inputs = $('form#outcomeForm :input').serializeArray().forEach((input) => {
         if (input.name === 'name') {
             outcomeData[input.name] = input.value;
-        } else if (input.name = 'courses[]') {
+        } else if (input.name === 'courses') {
             id = input.value;
             outcomeData.category = id;
         }
@@ -24,6 +24,7 @@ var handleCreateOutcomeFormSubmission = (e) => {
         data: JSON.stringify(outcomeData),
         contentType:'application/json',
         dataType:"json",
+        success: (result) => {populateOutcomesForCourseForm();}
 
     });
 };
