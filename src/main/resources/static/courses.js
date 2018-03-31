@@ -12,16 +12,21 @@ var clearCourses = () => {
 
 
 var displayCourse = (course) => {
-    var learningOutcomes = course.learningOutcomes.map(outcome => outcome.name);
+    var outcomeData = $('<td></td>');
+    var outcomeListHTML = $('<ul></ul>');
 
-    //TODO: this will be revisited once the courses can have learning outcomes
+    course.learningOutcomes.forEach((outcome) => {
+        outcomeListHTML.append($('<li><a href="#outcome' + outcome.id + '">' + outcome.name + '</a></li>'))
+    });
+
     var courseDiv = $('<tr id="course' + course.id + '">' +
         '<td>' + course.name + '</td>' +
         '<td>' + course.year + '</td>' +
-        '<td>' + JSON.stringify(learningOutcomes) + '</td>' +
         '</tr>'
         );
 
+    outcomeData.append(outcomeListHTML);
+    courseDiv.append(outcomeData);
     $(ALL_COURSES_ID).find('tbody').append(courseDiv);
 };
 
@@ -38,10 +43,20 @@ var displayCourseList = () => {
 var handleCreateCourseFormSubmission = (e) => {
     e.preventDefault();
 
-    var courseData = {};
+    var courseData = {
+        learningOutcomes:[]
+    };
     var inputs = $('form#courseForm :input').serializeArray().forEach((input) => {
-        courseData[input.name] = input.value;
+
+        if (input.name === 'name') {
+            courseData[input.name] = input.value;
+        } else if (input.name === 'outcomes[]') {
+            courseData['learningOutcomes'].push(input.value);
+        } else if(input.name === 'year'){
+            courseData[input.name] = input.value;
+        }
     });
+
 
     $.ajax({
         url:'/courses',
