@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -88,7 +89,9 @@ public class LearningOutcomesControllerTest {
                 .andExpect(jsonPath("$.name").exists())
                 .andExpect(jsonPath("$.name").value(NAME))
                 .andExpect(jsonPath("$.category").exists())
-                .andExpect(jsonPath("$.category.id").value(category.getId()));
+                .andExpect(jsonPath("$.category").value(category.getId()));
+        Optional<Category> added = categoryRepository.findById(category.getId());
+        assertTrue(!added.get().getLearningOutcomes().isEmpty());
     }
 
     @Test
@@ -158,7 +161,7 @@ public class LearningOutcomesControllerTest {
                 .andExpect(jsonPath("$.name").exists())
                 .andExpect(jsonPath("$.name").value(NAME))
                 .andExpect(jsonPath("$.category").exists())
-                .andExpect(jsonPath("$.category.id").value(category.getId()));
+                .andExpect(jsonPath("$.category").value(category.getId()));
     }
 
     @Test
@@ -185,7 +188,7 @@ public class LearningOutcomesControllerTest {
                 .andExpect(jsonPath("$.name").exists())
                 .andExpect(jsonPath("$.name").value(NAME))
                 .andExpect(jsonPath("$.category").exists())
-                .andExpect(jsonPath("$.category.id").value(category.getId()));
+                .andExpect(jsonPath("$.category").value(category.getId()));
 
         assertTrue(!learningOutcomeRepository.findById(Integer.parseInt(outcomeId)).isPresent());
     }
@@ -230,7 +233,7 @@ public class LearningOutcomesControllerTest {
                 .andExpect(jsonPath("$.name").exists())
                 .andExpect(jsonPath("$.name").value(UPDATED_NAME))
                 .andExpect(jsonPath("$.category").exists())
-                .andExpect(jsonPath("$.category.id").value(category.getId()));
+                .andExpect(jsonPath("$.category").value(category.getId()));
     }
 
     @Test

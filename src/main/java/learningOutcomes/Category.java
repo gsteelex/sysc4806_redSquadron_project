@@ -1,11 +1,7 @@
 package learningOutcomes;
 import java.util.List;
 import java.util.ArrayList;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.CascadeType;
+import javax.persistence.*;
 
 @Entity
 public class Category {
@@ -18,7 +14,7 @@ public class Category {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<LearningOutcome> outcomes;
 	
 	public Category() {
