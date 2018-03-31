@@ -38,10 +38,20 @@ var displayCourseList = () => {
 var handleCreateCourseFormSubmission = (e) => {
     e.preventDefault();
 
-    var courseData = {};
+    var courseData = {
+        learningOutcomes:[]
+    };
     var inputs = $('form#courseForm :input').serializeArray().forEach((input) => {
-        courseData[input.name] = input.value;
+
+        if (input.name === 'name') {
+            courseData[input.name] = input.value;
+        } else if (input.name === 'outcomes[]') {
+            courseData['learningOutcomes'].push(input.value);
+        } else if(input.name === 'year'){
+            courseData[input.name] = input.value;
+        }
     });
+
 
     $.ajax({
         url:'/courses',
