@@ -41,17 +41,11 @@ var handleCreateOutcomeFormSubmission = (e) => {
 
     var id;
     var inputs = $('form#outcomeForm :input').serializeArray().forEach((input) => {
-        if (input.name === 'name') {
-            outcomeData[input.name] = input.value;
-        } else if (input.name === 'category') {
-            id = input.value;
-            outcomeData.category = id;
-        }
-
+        outcomeData[input.name] = input.value;
     });
 
     $.ajax({
-        url:'/categories/' + id + '/learningOutcomes',
+        url:'/categories/' + outcomeData.category + '/learningOutcomes',
         type:'POST',
         data: JSON.stringify(outcomeData),
         contentType:'application/json',
