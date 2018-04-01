@@ -72,13 +72,19 @@ public class CategoriesController {
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-    public Category deleteCategoryById(@PathVariable("id") Integer id, HttpServletResponse response) {
+    public Category deleteCategoryById(@PathVariable("id") Integer id, HttpServletResponse response) throws IOException {
         Optional<Category> category = categoryRepository.findById(id);
 
         if (category.isPresent()) {
             Category categoryToReturn = category.get();
-            categoryRepository.delete(category.get());
-            return categoryToReturn;
+            if (categoryToReturn.getSize() == 0) {
+                categoryRepository.delete(category.get());
+                return categoryToReturn;
+            }
+            else {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "cannot delete a category with learning outcomes, please remove all learning outcomes before deleting");
+                return null;
+            }
 
         } else {
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);

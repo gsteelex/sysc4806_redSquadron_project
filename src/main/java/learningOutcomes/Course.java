@@ -78,4 +78,13 @@ public class Course {
         }
         return true;
     }
+
+    public boolean hasOutcomeWithId(Integer id) {
+        for (LearningOutcome outcome: outcomes) {
+            if (outcome.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
