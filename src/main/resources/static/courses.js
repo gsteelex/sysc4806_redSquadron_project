@@ -86,19 +86,22 @@ var handleDeleteCourseFormSubmission = (e) => {
 
     var id = $(DELETE_COURSE_SELECT_ID).val();
 
-    $.ajax({
-        url:COURSES_BASE_PATH + '/' + id,
-        type:'DELETE',
-        contentType:'application/json',
-        dataType:"json",
-        success: () => {
-            displayCourseList();
-            populateDeleteCourseForm();
-        },
-        error: (errorResult) => {
-            alert("Could not delete course: " + errorResult.responseJSON.message);
-        }
-    });
+    //only delete if a course is selected
+    if (id) {
+        $.ajax({
+            url:COURSES_BASE_PATH + '/' + id,
+            type:'DELETE',
+            contentType:'application/json',
+            dataType:"json",
+            success: () => {
+                displayCourseList();
+                populateDeleteCourseForm();
+            },
+            error: (errorResult) => {
+                alert("Could not delete course: " + errorResult.responseJSON.message);
+            }
+        });
+    }
 };
 var populateOutcomesForCourseForm = () => {
     //remove previous options

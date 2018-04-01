@@ -50,3 +50,8 @@ form {
 .hidden {
     display: none;
 }
+
+button {
+    padding: 4px;
+    margin: 8px;
+}
