@@ -2,6 +2,9 @@ var EMPTY_HTML = '';
 var ALL_PROGRAMS_ID = '#allPrograms';
 var CREATE_PROGRAM_COURSES_SELECT_ID = '#programCoursesSelect';
 var DELETE_PROGRAMS_SELECT_ID = '#deleteProgramSelect';
+var UPDATE_PROGRAM_SELECT_ID = '#updateProgramSelect';
+var UPDATE_PROGRAM_NAME_ID = '#updateProgramName';
+var UPDATE_PROGRAM_COURSES_ID = '#programUpdateCoursesSelect';
 var PROGRAMS_BASE_PATH = '/programs';
 var COURSES_BASE_PATH = '/courses';
 
@@ -34,6 +37,7 @@ var handleCreateProgramFormSubmission = (e) => {
         success: () => {
             displayProgramList();
             populateDeleteProgramForm();
+            populateUpdateProgramForm();
         }
     });
 };
@@ -71,11 +75,11 @@ var populateCoursesForProgramForm = () => {
 
     //get list of all courses
      $.get(COURSES_BASE_PATH, (courses) => {
-            //append each course to the multi select when creating a course
-            courses.forEach((course) => {
-                $(CREATE_PROGRAM_COURSES_SELECT_ID).append('<option value="' + course.id + '">' + course.id + ': ' + course.name + '</option>');
-            });
+        //append each course to the multi select when creating a course
+        courses.forEach((course) => {
+            $(CREATE_PROGRAM_COURSES_SELECT_ID).append('<option value="' + course.id + '">' + course.id + ': ' + course.name + '</option>');
         });
+    });
 };
 
 var populateDeleteProgramForm = () => {
@@ -94,24 +98,102 @@ var handleDeleteProgramFormSubmission = (e) => {
 
     var id = $(DELETE_PROGRAMS_SELECT_ID).val();
 
-    $.ajax({
-        url:PROGRAMS_BASE_PATH + '/' + id,
-        type:'DELETE',
-        contentType:'application/json',
-        dataType:"json",
-        success: () => {
-            displayProgramList();
-            populateDeleteProgramForm();
-        }
+    //only delete a program if one is selected
+    if (id) {
+        $.ajax({
+            url:PROGRAMS_BASE_PATH + '/' + id,
+            type:'DELETE',
+            contentType:'application/json',
+            dataType:"json",
+            success: () => {
+                displayProgramList();
+                populateDeleteProgramForm();
+                populateUpdateProgramForm();
+            }
+        });
+    }
+};
+
+var populateUpdateProgramForm = () => {
+    $(UPDATE_PROGRAM_SELECT_ID).html(EMPTY_HTML);
+
+    $.get(PROGRAMS_BASE_PATH, (programs) => {
+        programs.forEach((program) => {
+            $(UPDATE_PROGRAM_SELECT_ID).append('<option value="' + program.id + '">' + program.id + ': ' + program.name + '</option>');
+        });
+
+        populateUpdateProgramFormWithSelectedProgram();
     });
+};
+
+var populateUpdateProgramFormWithSelectedProgram = () => {
+    $(UPDATE_PROGRAM_COURSES_ID).html(EMPTY_HTML);
+    var programId = $(UPDATE_PROGRAM_SELECT_ID).val();
+
+    //only populate the update form if a program is selected
+    if (programId) {
+        //get the program
+        $.get(PROGRAMS_BASE_PATH + '/' + programId, (program) => {
+
+            //keep track of the courses currently part of the program
+            var programCourses = program.courses.map(course => course.id);
+
+            //set the name field for the program
+            $(UPDATE_PROGRAM_NAME_ID).val(program.name);
+
+            //get all courses
+            $.get(COURSES_BASE_PATH, (courses) => {
+                //append each course to the multi select, and select the ones that are in the program
+                courses.forEach((course) => {
+                    if ($.inArray(course.id, programCourses) > -1) {
+                        $(UPDATE_PROGRAM_COURSES_ID).append('<option value="' + course.id + '" selected>' + course.id + ': ' + course.name + '</option>');
+                    } else {
+                        $(UPDATE_PROGRAM_COURSES_ID).append('<option value="' + course.id + '">' + course.id + ': ' + course.name + '</option>');
+                    }
+                });
+            });
+        });
+    }
+};
+
+
+var handleUpdateProgramSubmit = (e) => {
+    e.preventDefault();
+
+    var programId = $(UPDATE_PROGRAM_SELECT_ID).val();
+    var newProgramName = $(UPDATE_PROGRAM_NAME_ID).val();
+    var newProgramCourses = $(UPDATE_PROGRAM_COURSES_ID).val();
+
+    //only update if a program is selected
+    if (programId) {
+        var programData = {
+            name: newProgramName,
+            courses: newProgramCourses? newProgramCourses: []  //check for null value, if null set to empty array
+        };
+
+        $.ajax({
+            url:PROGRAMS_BASE_PATH + '/' + programId,
+            type:'PATCH',
+            contentType:'application/json',
+            dataType:"json",
+            data: JSON.stringify(programData),
+            success: () => {
+                displayProgramList();
+                populateDeleteProgramForm();
+                populateUpdateProgramForm();
+            }
+        });
+    }
 };
 
 var setUp = () => {
     displayProgramList();
     populateCoursesForProgramForm();
     populateDeleteProgramForm();
+    populateUpdateProgramForm();
     $('#programForm').submit(handleCreateProgramFormSubmission);
     $('#deleteProgramForm').submit(handleDeleteProgramFormSubmission);
+    $('#updateProgramForm').submit(handleUpdateProgramSubmit);
 };
 
 

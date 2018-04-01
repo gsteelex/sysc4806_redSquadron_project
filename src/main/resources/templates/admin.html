@@ -18,6 +18,8 @@
 <label for="createMode">Create</label>
 <input id="deleteMode" type="radio" name="mode" value="delete" />
 <label for="deleteMode">Delete</label>
+<input id="updateMode" type="radio" name="mode" value="update" />
+<label for="updateMode">Update</label>
 
 <div id="create">
     <h1>Create Category</h1>
@@ -59,6 +61,16 @@
     <h1>Delete Course</h1>
     <form id="deleteCourseForm" action="#">
         <p>Course To Delete: <select id="deleteCourseSelect" name="id"></select></p>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </form>
+</div>
+
+<div id="update" class="hidden">
+    <h1>Update Program</h1>
+    <form id="updateProgramForm" action="#">
+        <p>Program To Update: <select id="updateProgramSelect" name="id"></select></p>
+        <p>Program Name: <input id="updateProgramName" type="text" name="name"/></p>
+        <p>Course List (multiple selectable): <select multiple="" id="programUpdateCoursesSelect" name="courses[]"></select></p>
         <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
     </form>
 </div>
