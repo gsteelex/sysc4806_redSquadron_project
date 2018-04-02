@@ -59,6 +59,22 @@ public class CategoriesControllerTest {
         return categoryId;
     }
 
+    private String createEmptyCategory() throws Exception {
+        MvcResult postResult = mockMvc.perform(
+                post(CATEGORY_BASE_PATH)
+                        .contentType("application/json")
+                        .content("{\"name\": \"" + NAME + "\", \"learningOutcomes\": []}")
+        )
+                .andDo(print())
+                .andReturn();
+
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = parser.parse(postResult.getResponse().getContentAsString()).getAsJsonObject();
+        String categoryId = jsonObject.get("id").getAsString();
+
+        return categoryId;
+    }
+
     @Before
     public void setUp() {
         outcome = new LearningOutcome();
@@ -189,7 +205,7 @@ public class CategoriesControllerTest {
     @Test
     public void testDeleteCategoryById() throws Exception {
 
-        String categoryId = createCategory();
+        String categoryId = createEmptyCategory();
 
         mockMvc.perform(
                 delete(CATEGORY_BASE_PATH + "/" + categoryId)
@@ -201,10 +217,7 @@ public class CategoriesControllerTest {
                 .andExpect(jsonPath("$.name").value(NAME))
                 .andExpect(jsonPath("$.learningOutcomes").exists())
                 .andExpect(jsonPath("$.learningOutcomes").isArray())
-                .andExpect(jsonPath("$.learningOutcomes").isNotEmpty())
-                .andExpect(jsonPath("$.learningOutcomes[0].id").value(outcome.getId()));
-
-        assertTrue(!learningOutcomeRepository.findById(outcome.getId()).isPresent());
+                .andExpect(jsonPath("$.learningOutcomes").isEmpty());
     }
 
     @Test

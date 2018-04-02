@@ -1,12 +1,14 @@
 package learningOutcomes.controllers;
 
 import learningOutcomes.Category;
+import learningOutcomes.Course;
 import learningOutcomes.LearningOutcome;
 import learningOutcomes.aspects.LearningOutcomeExistsValidated;
 import learningOutcomes.aspects.LearningOutcomeRequestValidated;
 import learningOutcomes.controllers.requestModels.LearningOutcomeRequest;
 import learningOutcomes.repositories.LearningOutcomeRepository;
 import learningOutcomes.repositories.CategoryRepository;
+import learningOutcomes.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import learningOutcomes.repositories.*;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +21,14 @@ import java.io.IOException;
 public class LearningOutcomeController {
 
     private CategoryRepository categoryRepository;
+    private CourseRepository courseRepository;
     private LearningOutcomeRepository learningOutcomeRepository;
 
+
     @Autowired
-    public LearningOutcomeController(CategoryRepository categoryRepository, LearningOutcomeRepository learningOutcomeRepository) {
+    public LearningOutcomeController(CategoryRepository categoryRepository, CourseRepository courseRepository, LearningOutcomeRepository learningOutcomeRepository) {
         this.categoryRepository = categoryRepository;
+        this.courseRepository = courseRepository;
         this.learningOutcomeRepository = learningOutcomeRepository;
     }
 
@@ -84,10 +89,18 @@ public class LearningOutcomeController {
         Optional<Category> category = categoryRepository.findById(categoryId);
 
         if (learningOutcome.isPresent() && category.isPresent()) {
+
             LearningOutcome learningOutcomeToReturn = learningOutcome.get();
             Category removeFrom = category.get();
             removeFrom.removeLearningOutcome(learningOutcomeToReturn);
             categoryRepository.save(removeFrom);
+            Iterable<Course> courses = courseRepository.findAll();
+            for (Course course: courses) {
+                if (course.hasOutcomeWithId(loId)) {
+                    course.removeLearningOutcome(learningOutcomeToReturn);
+                    courseRepository.save(course);
+                }
+            }
             learningOutcomeRepository.delete(learningOutcome.get());
             return learningOutcomeToReturn;
 

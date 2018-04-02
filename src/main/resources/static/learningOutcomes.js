@@ -2,6 +2,8 @@ var EMPTY_HTML = '';
 var ALL_LEARNING_OUTCOMES_ID = '#allLearningOutcomes';
 var CREATE_OUTCOME_CATEGORY_SELECT_ID = '#categorySelect';
 var CATEGORY_BASE_PATH = '/categories';
+var OUTCOME_BASE_PATH = '/learningOutcomes';
+var DELETE_OUTCOMES_SELECT_ID = '#deleteOutcomeSelect';
 
 var clearLearningOutcomes = () => {
     $(ALL_LEARNING_OUTCOMES_ID).html(EMPTY_HTML);
@@ -39,23 +41,18 @@ var handleCreateOutcomeFormSubmission = (e) => {
 
     var id;
     var inputs = $('form#outcomeForm :input').serializeArray().forEach((input) => {
-        if (input.name === 'name') {
-            outcomeData[input.name] = input.value;
-        } else if (input.name === 'category') {
-            id = input.value;
-            outcomeData.category = id;
-        }
-
+        outcomeData[input.name] = input.value;
     });
 
     $.ajax({
-        url:'/categories/' + id + '/learningOutcomes',
+        url:'/categories/' + outcomeData.category + '/learningOutcomes',
         type:'POST',
         data: JSON.stringify(outcomeData),
         contentType:'application/json',
         dataType:"json",
         success: () => {
             displayLearningOutcomeList();
+            populateDeleteOutcomeForm();
             populateOutcomesForCourseForm();
         }
     });
@@ -74,15 +71,48 @@ var populateCategoriesForOutcomeForm = () => {
     });
 };
 
+var populateDeleteOutcomeForm = () => {
 
+    $(DELETE_OUTCOMES_SELECT_ID).html(EMPTY_HTML);
 
+    $.get(CATEGORY_BASE_PATH, (categories) => {
+        categories.forEach((category) => {
+            category.learningOutcomes.forEach((outcome) => {
+                $(DELETE_OUTCOMES_SELECT_ID).append('<option value="' + outcome.category + ' ' + outcome.id + '">' + outcome.id + ': ' + outcome.name + '</option>');
+            });
+        });
+    });
+};
 
+var handleDeleteOutcomeFormSubmission = (e) => {
+    e.preventDefault();
+
+    var vals = $(DELETE_OUTCOMES_SELECT_ID).val();
+
+    if (vals) {
+        var ids = vals.split(" ");
+        $.ajax({
+            url: CATEGORY_BASE_PATH + '/' + ids[0] + OUTCOME_BASE_PATH + '/' + ids[1],
+            type: 'DELETE',
+            contentType: 'application/json',
+            dataType: "json",
+            success: () => {
+                displayLearningOutcomeList();
+                populateDeleteOutcomeForm();
+                displayCourseList();
+                populateOutcomesForCourseForm();
+            }
+        });
+    }
+};
 
 
 var setUp = () => {
     displayLearningOutcomeList();
     populateCategoriesForOutcomeForm();
+    populateDeleteOutcomeForm();
     $('#outcomeForm').submit(handleCreateOutcomeFormSubmission);
+    $('#deleteOutcomeForm').submit(handleDeleteOutcomeFormSubmission);
 };
 
 
