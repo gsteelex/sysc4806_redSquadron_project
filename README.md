@@ -9,8 +9,14 @@ SYSC 4806 Project - Red Squadron Team
 ## Summary
 A user can track, edit, and update learning outcomes for different programs. Each course has a set of learning objectives in a given year. Each learning objective belongs to a category, and these categories can be edited by the administrator. A course belongs to one or more programs and a program has many courses in a given year.
 
+The default user view can be seen at the root URL, while the administrator view can be seen at "/admin".
+
+Additional Program Year based queries can be performed at the bottom of the default user view and query results downloaded as a CSV file.
+
 ## Application Endpoints
 Base URL: [https://sysc4806-red-squadron-project.herokuapp.com](https://sysc4806-red-squadron-project.herokuapp.com)
+
+Admin URL: [https://sysc4806-red-squadron-project.herokuapp.com/admin](https://sysc4806-red-squadron-project.herokuapp.com/admin)
 
 |Request Method|Endpoint|
 |-------------|-------------|
@@ -59,22 +65,22 @@ To be completed for this iteration (03/15/2018):
 To be completed for next iteration (03/22/2018):
 * Create endpoints for learning outcomes :heavy_check_mark:
 * Create courses and programs through GUI :heavy_check_mark:
-* [View categories on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187266) :pencil2:
+* [View categories on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187266) :heavy_check_mark:
 * [Create category on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187283) :heavy_check_mark:
-* [View learning outcomes on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8031918) :pencil2:
-* [Create learning outcome on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187294) :pencil2:
+* [View learning outcomes on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8031918) :heavy_check_mark:
+* [Create learning outcome on GUI](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8187294) :heavy_check_mark:
 
 To be completed for next iteration (03/29/2018):
-* Finish everything we were too optimistic from last iteration :pencil2:
+* Finish everything we were too optimistic from last iteration :heavy_check_mark:
 * Delete courses and programs :heavy_check_mark:
 
 To be completed for next iteration (04/04/2018):
-* Finish items from pervious iteration :pencil2:
+* Finish items from pervious iteration :heavy_check_mark:
 * Updates via GUI:
-    * https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8555006
-    * https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8555003
-    * https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8554996
-    * https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8554989
-* [GUI: Delete Category and Learning Outcome](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8554954)
-* [Course Learning Outcome links to Learning Outcome Table](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8031911)
-* [Additional Queries Required](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8560453) :pencil2:
+    * https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8555006 :heavy_check_mark:
+    * https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8555003 :heavy_check_mark:
+    * https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8554996 :heavy_check_mark:
+    * https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8554989 :heavy_check_mark:
+* [GUI: Delete Category and Learning Outcome](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8554954) :heavy_check_mark:
+* [Course Learning Outcome links to Learning Outcome Table](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8031911) :heavy_check_mark:
+* [Additional Queries Required and CSV export query results](https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8560453) :heavy_check_mark:
