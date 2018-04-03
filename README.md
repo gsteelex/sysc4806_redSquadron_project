@@ -75,7 +75,7 @@ To be completed for next iteration (03/29/2018):
 * Delete courses and programs :heavy_check_mark:
 
 To be completed for next iteration (04/04/2018):
-* Finish items from pervious iteration :heavy_check_mark:
+* Finish items from previous iteration :heavy_check_mark:
 * Updates via GUI:
     * https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8555006 :heavy_check_mark:
     * https://github.com/gsteelex/sysc4806_redSquadron_project/projects/1#card-8555003 :heavy_check_mark:
