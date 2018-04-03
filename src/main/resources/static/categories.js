@@ -3,6 +3,9 @@ var ALL_CATEGORIES_ID = '#allCategories';
 var CATEGORIES_BASE_PATH = '/categories';
 var DELETE_CATEGORIES_SELECT_ID = '#deleteCategorySelect';
 
+var UPDATE_CATEGORY_SELECT_ID = '#updateCategorySelect';
+var UPDATE_CATEGORY_NAME_ID = '#updateCategoryName';
+
 var handleCreateCategoryFormSubmission = (e) => {
     e.preventDefault();
 
@@ -20,6 +23,7 @@ var handleCreateCategoryFormSubmission = (e) => {
         success: (result) => {
             populateCategoriesForOutcomeForm();
             populateDeleteCategoryForm();
+            populateUpdateCategoryForm();
             displayCategoryList();
         }
     });
@@ -89,11 +93,61 @@ var displayCategoryList = () => {
     });
 };
 
+var populateUpdateCategoryForm = () => {
+    $(UPDATE_CATEGORY_SELECT_ID).html(EMPTY_HTML);
+    $.get(CATEGORIES_BASE_PATH, (categories) => {
+        categories.forEach((category) => {
+            $(UPDATE_CATEGORY_SELECT_ID).append('<option value="' + category.id + '">' + category.id + ': ' + category.name + '</option>')
+        });
+        populateUpdateCategoryFormWithSelectedCategory();
+    });
+};
+
+var populateUpdateCategoryFormWithSelectedCategory = () => {
+    var categoryId = $(UPDATE_CATEGORY_SELECT_ID).val();
+    if (categoryId) {
+        $.get(CATEGORIES_BASE_PATH + '/' + categoryId, (category) => {
+            $(UPDATE_CATEGORY_NAME_ID).val(category.name);
+        });
+    }
+};
+
+var handleUpdateCategorySubmit = (e) => {
+    e.preventDefault();
+
+    var categoryId = $(UPDATE_CATEGORY_SELECT_ID).val();
+    var newCategoryName = $(UPDATE_CATEGORY_NAME_ID).val();
+
+    if (categoryId) {
+        var categoryData = {
+            name: newCategoryName
+        };
+
+        $.ajax({
+            url: CATEGORIES_BASE_PATH + '/' + categoryId,
+            type: 'PATCH',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(categoryData),
+            success: () => {
+                populateCategoriesForOutcomeForm();
+                populateDeleteCategoryForm();
+                populateUpdateCategoryForm();
+                displayCategoryList();
+                displayLearningOutcomeList();
+            }
+        });
+    }
+};
+
 var setUp = () => {
     displayCategoryList();
     populateDeleteCategoryForm();
+    populateUpdateCategoryForm();
+    $(UPDATE_CATEGORY_SELECT_ID).change(populateUpdateCategoryFormWithSelectedCategory);
     $('#categoryForm').submit(handleCreateCategoryFormSubmission);
     $('#deleteCategoryForm').submit(handleDeleteCategoryFormSubmission);
+    $('#updateCategoryForm').submit(handleUpdateCategorySubmit);
 };
 
 
