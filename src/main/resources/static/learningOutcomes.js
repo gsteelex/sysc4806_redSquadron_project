@@ -54,6 +54,7 @@ var handleCreateOutcomeFormSubmission = (e) => {
             displayLearningOutcomeList();
             populateDeleteOutcomeForm();
             populateOutcomesForCourseForm();
+            displayCategoryList();
         }
     });
 };
@@ -101,6 +102,7 @@ var handleDeleteOutcomeFormSubmission = (e) => {
                 populateDeleteOutcomeForm();
                 displayCourseList();
                 populateOutcomesForCourseForm();
+                displayCategoryList();
             }
         });
     }
