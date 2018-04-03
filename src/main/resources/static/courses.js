@@ -201,6 +201,7 @@ var handleUpdateCourseSubmit = (e) => {
             data: JSON.stringify(courseData),
             success: () => {
                 displayCourseList();
+                displayProgramList();
                 populateDeleteCourseForm();
                 populateUpdateCourseForm();
             }
