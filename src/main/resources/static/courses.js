@@ -155,6 +155,8 @@ var populateUpdateCourseFormWithSelectedCourse = () => {
         //set the name field for the course
             $(UPDATE_COURSE_NAME_ID).val(course.name);
 
+            $(UPDATE_COURSE_YEAR_ID).val(course.year);
+
             //get all outcomes
             $.get(CATEGORY_BASE_PATH, (categories) => {
                 categories.forEach((category) => {
@@ -213,6 +215,7 @@ var setUp = () => {
     populateDeleteCourseForm();
     populateOutcomesForCourseForm();
     populateUpdateCourseForm();
+    $(UPDATE_COURSE_SELECT_ID).change(populateUpdateCourseFormWithSelectedCourse);
     $('#courseForm').submit(handleCreateCourseFormSubmission);
     $('#deleteCourseForm').submit(handleDeleteCourseFormSubmission);
     $('#updateCourseForm').submit(handleUpdateCourseSubmit);

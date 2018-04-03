@@ -191,6 +191,7 @@ var setUp = () => {
     populateCoursesForProgramForm();
     populateDeleteProgramForm();
     populateUpdateProgramForm();
+    $(UPDATE_PROGRAM_SELECT_ID).change(populateUpdateProgramFormWithSelectedProgram);
     $('#programForm').submit(handleCreateProgramFormSubmission);
     $('#deleteProgramForm').submit(handleDeleteProgramFormSubmission);
     $('#updateProgramForm').submit(handleUpdateProgramSubmit);

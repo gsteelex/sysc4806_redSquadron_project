@@ -186,6 +186,7 @@ var setUp = () => {
     populateCategoriesForOutcomeForm();
     populateDeleteOutcomeForm();
     populateUpdateOutcomeForm();
+    $(UPDATE_OUTCOME_SELECT_ID).change(populateUpdateOutcomeFormWithSelectedOutcome);
     $('#outcomeForm').submit(handleCreateOutcomeFormSubmission);
     $('#deleteOutcomeForm').submit(handleDeleteOutcomeFormSubmission);
     $('#updateOutcomeForm').submit(handleUpdateOutcomeSubmit);
